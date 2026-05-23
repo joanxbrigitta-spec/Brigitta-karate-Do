@@ -229,6 +229,17 @@
     user-select: none;
   }
 
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(30%) contrast(1.1);
+    opacity: 0.7;
+  }
+
   /* STRIPE */
   .stripe {
     background: var(--red);
@@ -904,6 +915,7 @@
   </div>
   <div class="hero-right">
     <div class="hero-image-bg"></div>
+    <img src="/images/karate-hero.jpg" alt="Karate practitioner in traditional stance" class="hero-image">
     <div class="hero-circle"></div>
     <div class="hero-kanji-bg">空手</div>
   </div>
@@ -1185,10 +1197,8 @@
     <!-- Featured: Roundhouse Kick -->
     <div class="move-card move-featured" data-category="kick">
       <img class="move-card-img"
-        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi3VTHi6axniRpWLdNGX6CJhYr0LLqyU7m4lNO_eTWNHQkV7BwtEY0xq9nTEWLkqo5ZC6zFN7bY2GQu2d7GPEzBi_FbHJ2Vn_Bp8wnX0LhzH6FhOb5j7bkJhHAJRcFhUqW1s4-dE_r8bDo/s1600/roundhouse+kick.jpg"
-        alt="Roundhouse kick demonstration"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="move-card-img-placeholder" style="display:none; aspect-ratio:16/7">🦵</div>
+        src="/images/roundhouse-kick.jpg"
+        alt="Roundhouse kick demonstration">
       <div class="move-card-body">
         <div class="move-type">Kick</div>
         <div class="move-name">Roundhouse Kick</div>
@@ -1205,10 +1215,8 @@
     <!-- Front Kick -->
     <div class="move-card" data-category="kick">
       <img class="move-card-img"
-        src="https://www.karatebyjesse.com/wp-content/uploads/2013/03/front-kick-mae-geri.jpg"
-        alt="Front kick mae geri"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="move-card-img-placeholder" style="display:none">🦵</div>
+        src="/images/front-kick.jpg"
+        alt="Front kick mae geri">
       <div class="move-card-body">
         <div class="move-type">Kick</div>
         <div class="move-name">Front Kick</div>
@@ -1224,10 +1232,8 @@
     <!-- Reverse Punch -->
     <div class="move-card" data-category="punch">
       <img class="move-card-img"
-        src="https://stockcake.com/i/karate-training-session_1060905_1149975"
-        alt="Karate punch training"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="move-card-img-placeholder" style="display:none">👊</div>
+        src="/images/reverse-punch.jpg"
+        alt="Karate punch training">
       <div class="move-card-body">
         <div class="move-type">Punch</div>
         <div class="move-name">Reverse Punch</div>
@@ -1244,10 +1250,8 @@
     <!-- Kata Stance -->
     <div class="move-card" data-category="kata">
       <img class="move-card-img"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Bassai_Dai_karate_kata.jpg/640px-Bassai_Dai_karate_kata.jpg"
-        alt="Karate kata stance"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="move-card-img-placeholder" style="display:none">🥋</div>
+        src="/images/kata-stance.jpg"
+        alt="Karate kata stance">
       <div class="move-card-body">
         <div class="move-type">Kata</div>
         <div class="move-name">Bassai Dai</div>
@@ -1264,10 +1268,8 @@
     <!-- Age-Uke Block -->
     <div class="move-card" data-category="block">
       <img class="move-card-img"
-        src="https://www.shotokankaratedo.com/wp-content/uploads/2015/06/age-uke.jpg"
-        alt="Age uke rising block"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="move-card-img-placeholder" style="display:none">🛡️</div>
+        src="/images/rising-block.jpg"
+        alt="Age uke rising block">
       <div class="move-card-body">
         <div class="move-type">Block</div>
         <div class="move-name">Rising Block</div>
@@ -1283,10 +1285,8 @@
     <!-- Side Kick -->
     <div class="move-card" data-category="kick">
       <img class="move-card-img"
-        src="https://www.karatebyjesse.com/wp-content/uploads/2013/05/yoko-geri-keage.jpg"
-        alt="Yoko geri side kick"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="move-card-img-placeholder" style="display:none">🦵</div>
+        src="/images/side-kick.jpg"
+        alt="Yoko geri side kick">
       <div class="move-card-body">
         <div class="move-type">Kick</div>
         <div class="move-name">Side Kick</div>
@@ -1302,10 +1302,8 @@
     <!-- Knife Hand Strike -->
     <div class="move-card" data-category="punch">
       <img class="move-card-img"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Shuto_uchi.jpg/640px-Shuto_uchi.jpg"
-        alt="Shuto uchi knife hand"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="move-card-img-placeholder" style="display:none">🤚</div>
+        src="/images/knife-hand.jpg"
+        alt="Shuto uchi knife hand">
       <div class="move-card-body">
         <div class="move-type">Strike</div>
         <div class="move-name">Knife Hand Strike</div>
