@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bushido Karate — Gear, Training & Dojo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #C0392B;
+    --red-dark: #96281B;
+    --red-light: #E74C3C;
+    --ink: #0E0C0B;
+    --ink2: #1A1614;
+    --paper: #F5F0E8;
+    --paper2: #EDE6D6;
+    --ash: #6B6460;
+    --gold: #C9A84C;
+    --gold-light: #E2C470;
+    --white: #FDFAF4;
+    --font-display: 'Shippori Mincho', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--ink);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(14,12,11,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--red-light); }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500;
+    color: rgba(253,250,244,0.6);
+    text-decoration: none; text-transform: uppercase;
+    letter-spacing: 0.12em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--red);
+    color: var(--white) !important;
+    padding: 0.5rem 1.4rem;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--red-light) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 4rem 6rem 4rem;
+    position: relative; z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 2.5rem; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title .accent { color: var(--red-light); }
+
+  .hero-title .kanji {
+    display: block;
+    font-size: 0.45em;
+    color: rgba(253,250,244,0.2);
+    letter-spacing: 0.3em;
+    margin-bottom: 0.2rem;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem; font-weight: 300;
+    color: rgba(253,250,244,0.6);
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--red);
+    color: var(--white);
+    padding: 0.85rem 2.2rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: none; border-radius: 2px;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--red-light); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 0.85rem 2.2rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: 1px solid rgba(253,250,244,0.25);
+    border-radius: 2px;
+    cursor: pointer; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(253,250,244,0.1);
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem; font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.75rem; font-weight: 300;
+    color: rgba(253,250,244,0.4);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, var(--ink) 0%, transparent 30%),
+      linear-gradient(135deg, #1a0a08 0%, #2d1208 40%, #0e0c0b 100%);
+  }
+
+  .hero-circle {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(55vw, 600px);
+    height: min(55vw, 600px);
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.08);
+  }
+
+  .hero-circle::before {
+    content: '';
+    position: absolute; inset: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(192,57,43,0.12);
+  }
+
+  .hero-kanji-bg {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-display);
+    font-size: clamp(12rem, 20vw, 22rem);
+    font-weight: 800;
+    color: rgba(192,57,43,0.06);
+    white-space: nowrap;
+    pointer-events: none;
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* STRIPE */
+  .stripe {
+    background: var(--red);
+    padding: 1rem 4rem;
+    display: flex; align-items: center; gap: 3rem;
+    overflow: hidden;
+  }
+
+  .stripe-item {
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    white-space: nowrap;
+    color: rgba(253,250,244,0.9);
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .stripe-dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: rgba(253,250,244,0.4);
+    flex-shrink: 0;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+
+  .section-label {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .section-label::before {
+    content: ''; display: block;
+    width: 2rem; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1rem; font-weight: 300;
+    color: rgba(253,250,244,0.5);
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* GEAR SECTION */
+  .gear-section {
+    background: var(--ink2);
+  }
+
+  .gear-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    margin-top: 3rem;
+  }
+
+  .gear-card {
+    background: var(--ink);
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(253,250,244,0.05);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .gear-card:hover { background: #161210; }
+
+  .gear-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .gear-card:hover::after { transform: scaleX(1); }
+
+  .gear-icon {
+    display: none;
+  }
+
+  .gear-cat {
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .gear-name {
+    font-family: var(--font-display);
+    font-size: 1.4rem; font-weight: 700;
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+  }
+
+  .gear-desc {
+    font-size: 0.88rem; font-weight: 300;
+    color: rgba(253,250,244,0.5);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .gear-price {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 600;
+    color: var(--gold);
+  }
+
+  .gear-price span {
+    font-size: 0.8rem; font-weight: 300;
+    color: rgba(253,250,244,0.4);
+    margin-left: 0.3rem;
+    font-family: var(--font-body);
+  }
+
+  .gear-card-featured {
+    background: rgba(192,57,43,0.08);
+    border-color: rgba(192,57,43,0.2);
+    grid-row: span 2;
+  }
+
+  .gear-badge {
+    display: inline-block;
+    background: var(--red);
+    color: var(--white);
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 1px;
+    margin-bottom: 1rem;
+  }
+
+  /* COURSES SECTION */
+  .courses-section {
+    background: var(--ink);
+  }
+
+  .courses-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .course-list {
+    display: flex; flex-direction: column; gap: 1px;
+    margin-top: 3rem;
+  }
+
+  .course-item {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    gap: 1.2rem;
+    align-items: start;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(253,250,244,0.06);
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 2px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .course-item:hover { background: rgba(253,250,244,0.03); }
+
+  .course-num {
+    font-family: var(--font-display);
+    font-size: 0.85rem; font-weight: 600;
+    color: var(--red);
+    padding-top: 0.15rem;
+  }
+
+  .course-item-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem; font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+
+  .course-item-meta {
+    font-size: 0.78rem; font-weight: 300;
+    color: rgba(253,250,244,0.4);
+    display: flex; gap: 1rem;
+  }
+
+  .course-belt {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  .belt-dot {
+    width: 10px; height: 10px; border-radius: 1px;
+  }
+
+  .belt-white { background: rgba(253,250,244,0.9); }
+  .belt-yellow { background: #E8C84A; }
+  .belt-orange { background: #E88A30; }
+  .belt-green { background: #2ECC71; }
+  .belt-blue { background: #3498DB; }
+  .belt-brown { background: #8B5E3C; }
+  .belt-black { background: rgba(253,250,244,0.15); border: 1px solid rgba(253,250,244,0.3); }
+
+  .course-price-tag {
+    font-family: var(--font-display);
+    font-size: 1.1rem; font-weight: 600;
+    color: var(--gold);
+    white-space: nowrap;
+    padding-top: 0.1rem;
+  }
+
+  /* DOJO SECTION */
+  .dojo-section {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 6rem 4rem;
+  }
+
+  .dojo-section .section-label { color: var(--red); }
+  .dojo-section .section-label::before { background: var(--red); }
+  .dojo-section .section-title { color: var(--ink); }
+  .dojo-section .section-sub { color: var(--ash); }
+
+  .dojo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+    align-items: center;
+  }
+
+  .dojo-features {
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+
+  .dojo-feature {
+    display: flex; gap: 1.2rem; align-items: start;
+  }
+
+  .dojo-feature-icon {
+    width: 2.5rem; height: 2.5rem;
+    background: rgba(192,57,43,0.1);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    color: var(--red);
+    overflow: hidden;
+  }
+
+  .dojo-feature-title {
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: var(--ink);
+  }
+
+  .dojo-feature-desc {
+    font-size: 0.88rem; font-weight: 300;
+    color: var(--ash);
+    line-height: 1.6;
+  }
+
+  .dojo-visual {
+    position: relative;
+  }
+
+  .dojo-card-main {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .dojo-card-header {
+    padding: 2rem;
+    border-bottom: 1px solid rgba(253,250,244,0.08);
+    display: flex; justify-content: space-between; align-items: start;
+  }
+
+  .dojo-card-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem; font-weight: 700;
+  }
+
+  .dojo-card-subtitle {
+    font-size: 0.8rem; font-weight: 300;
+    color: rgba(253,250,244,0.4);
+    margin-top: 0.2rem;
+  }
+
+  .dojo-badge {
+    background: rgba(201,168,76,0.15);
+    color: var(--gold);
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 1px;
+  }
+
+  .dojo-schedule {
+    padding: 1.5rem 2rem;
+  }
+
+  .schedule-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(253,250,244,0.05);
+    font-size: 0.88rem;
+  }
+
+  .schedule-row:last-child { border-bottom: none; }
+
+  .schedule-day { font-weight: 500; }
+
+  .schedule-time { color: rgba(253,250,244,0.4); font-weight: 300; }
+
+  .schedule-level {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1px;
+  }
+
+  .level-beg { background: rgba(52,152,219,0.15); color: #5dade2; }
+  .level-int { background: rgba(46,204,113,0.15); color: #52be80; }
+  .level-adv { background: rgba(192,57,43,0.2); color: var(--red-light); }
+
+  .dojo-cta {
+    padding: 1.5rem 2rem;
+    background: var(--red);
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .dojo-cta:hover { background: var(--red-light); }
+
+  .dojo-cta-text {
+    font-size: 0.88rem; font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .dojo-cta-arrow { font-size: 1.2rem; }
+
+  /* MOVES SHOWCASE */
+  .moves-section {
+    background: var(--ink);
+    padding: 6rem 4rem;
+  }
+
+  .moves-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  .moves-filters {
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+  }
+
+  .moves-filter-btn {
+    background: transparent;
+    color: rgba(253,250,244,0.45);
+    border: 1px solid rgba(253,250,244,0.1);
+    padding: 0.4rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border-radius: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .moves-filter-btn:hover,
+  .moves-filter-btn.active {
+    background: var(--red);
+    color: var(--white);
+    border-color: var(--red);
+  }
+
+  .moves-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .move-card {
+    background: var(--ink2);
+    border: 1px solid rgba(253,250,244,0.06);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s;
+    cursor: pointer;
+  }
+
+  .move-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(192,57,43,0.35);
+  }
+
+  .move-card-img {
+    width: 100%; aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    background: #1a1614;
+    filter: grayscale(30%) contrast(1.05);
+    transition: filter 0.3s;
+  }
+
+  .move-card:hover .move-card-img {
+    filter: grayscale(0%) contrast(1.1);
+  }
+
+  .move-card-img-placeholder {
+    width: 100%; aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #1a1614 0%, #2a1a14 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+  }
+
+  .move-card-body {
+    padding: 1.2rem 1.4rem 1.4rem;
+  }
+
+  .move-type {
+    font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .move-name {
+    font-family: var(--font-display);
+    font-size: 1.2rem; font-weight: 700;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+  }
+
+  .move-name-jp {
+    font-size: 0.78rem; font-weight: 300;
+    color: rgba(253,250,244,0.3);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.7rem;
+    font-style: italic;
+  }
+
+  .move-desc {
+    font-size: 0.83rem; font-weight: 300;
+    color: rgba(253,250,244,0.5);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .move-meta {
+    display: flex; gap: 0.6rem; flex-wrap: wrap;
+  }
+
+  .move-tag {
+    font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 1px;
+  }
+
+  .tag-difficulty-beg { background: rgba(52,152,219,0.15); color: #5dade2; }
+  .tag-difficulty-int { background: rgba(201,168,76,0.15); color: var(--gold); }
+  .tag-difficulty-adv { background: rgba(192,57,43,0.18); color: var(--red-light); }
+  .tag-category { background: rgba(253,250,244,0.06); color: rgba(253,250,244,0.45); }
+
+  .move-featured {
+    grid-column: span 2;
+  }
+
+  .move-featured .move-card-img,
+  .move-featured .move-card-img-placeholder {
+    aspect-ratio: 16/7;
+  }
+
+  .move-featured .move-name { font-size: 1.6rem; }
+
+  /* TESTIMONIALS */
+  .testimonials-section {
+    background: var(--ink2);
+    padding: 5rem 4rem;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .testimonial-card {
+    background: rgba(253,250,244,0.03);
+    border: 1px solid rgba(253,250,244,0.06);
+    border-radius: 2px;
+    padding: 2rem;
+  }
+
+  .testimonial-stars {
+    color: var(--gold);
+    font-size: 0.8rem; letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.92rem; font-weight: 300;
+    color: rgba(253,250,244,0.65);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .author-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--red);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-size: 0.85rem; font-weight: 500;
+  }
+
+  .author-belt {
+    font-size: 0.72rem; font-weight: 300;
+    color: rgba(253,250,244,0.4);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #080605;
+    padding: 4rem 4rem 2.5rem;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-brand span { color: var(--red-light); }
+
+  .footer-tagline {
+    font-size: 0.85rem; font-weight: 300;
+    color: rgba(253,250,244,0.35);
+    line-height: 1.6;
+    max-width: 260px;
+  }
+
+  .footer-heading {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(253,250,244,0.4);
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+
+  .footer-links a {
+    font-size: 0.88rem; font-weight: 300;
+    color: rgba(253,250,244,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(253,250,244,0.06);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; font-weight: 300;
+    color: rgba(253,250,244,0.25);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section, .dojo-section, .testimonials-section { padding: 4rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 7rem 1.5rem 4rem; }
+    .hero-right { display: none; }
+    .gear-grid { grid-template-columns: 1fr; }
+    .courses-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .dojo-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .stripe { padding: 1rem 1.5rem; }
+  }
+</style>
+<script>
+// Universal image error fallback — show a dark placeholder tile instead of broken icon
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('img').forEach(function(img) {
+    img.addEventListener('error', function() {
+      if (!this.dataset.fallbackApplied) {
+        this.dataset.fallbackApplied = '1';
+        var w = this.offsetWidth || 200;
+        var h = this.offsetHeight || 140;
+        this.style.background = 'linear-gradient(135deg,#1a1614 0%,#2a1a14 100%)';
+        this.style.minHeight = '80px';
+        this.removeAttribute('src');
+      }
+    });
+  });
+});
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">武道 <span>BUSHIDO</span></a>
+  <ul class="nav-links">
+    <li><a href="#gear">Gear</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#moves">Moves</a></li>
+    <li><a href="#dojo">Dojo</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#dojo" class="nav-cta">Join Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Est. 1987 · Traditional Karate-Do</div>
+    <h1 class="hero-title">
+      <span class="kanji">空手道</span>
+      The Way of<br>the <span class="accent">Empty Hand</span>
+    </h1>
+    <p class="hero-sub">
+      Premium karate equipment, world-class online training, and a dojo rooted in Okinawan tradition. Your journey to mastery starts here.
+    </p>
+    <div class="hero-actions">
+      <a href="#gear" class="btn-primary">Shop Gear</a>
+      <a href="#courses" class="btn-outline">Explore Courses</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">12K+</span>
+        <span class="stat-label">Students worldwide</span>
+      </div>
+      <div>
+        <span class="stat-num">38</span>
+        <span class="stat-label">Years of tradition</span>
+      </div>
+      <div>
+        <span class="stat-num">6th</span>
+        <span class="stat-label">Dan instructor</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-bg"></div>
+    <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNjAwIDcwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjcwMCIgZmlsbD0idHJhbnNwYXJlbnQiLz4KICA8ZGVmcz4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iaHIiIGN4PSI1NSUiIGN5PSI0NSUiIHI9IjUwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoMTkyLDU3LDQzLDAuMTgpIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0idHJhbnNwYXJlbnQiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNzAwIiBmaWxsPSJ1cmwoI2hyKSIvPgogIDwhLS0gRGVjb3JhdGl2ZSBjaXJjbGVzIC0tPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjM1MCIgcj0iMjQwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjAxLDE2OCw3NiwwLjA2KSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGNpcmNsZSBjeD0iMzAwIiBjeT0iMzUwIiByPSIxOTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC4wOCkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjM1MCIgcj0iMTQwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjAxLDE2OCw3NiwwLjA1KSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPCEtLSBLYW5qaSB3YXRlcm1hcmsgLS0+CiAgPHRleHQgeD0iMTYwIiB5PSI1MjAiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSIzMjAiIGZpbGw9InJnYmEoMTkyLDU3LDQzLDAuMDUpIiBmb250LXdlaWdodD0iYm9sZCI+56m6PC90ZXh0PgogIDwhLS0gS2FyYXRla2Egc2lsaG91ZXR0ZSAtIGhpZ2gga2ljayBwb3NlIC0tPgogIDwhLS0gR3JvdW5kIC0tPgogIDxsaW5lIHgxPSIxODAiIHkxPSI2NjAiIHgyPSI0MjAiIHkyPSI2NjAiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC4zKSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPCEtLSBTdGFuZGluZyBsZWcgLS0+CiAgPGxpbmUgeDE9IjI5MCIgeTE9IjY2MCIgeDI9IjI5MiIgeTI9IjUzMCIgc3Ryb2tlPSJyZ2JhKDIyNCwyMTYsMjA0LDAuODUpIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIFRvcnNvIC0tPgogIDxsaW5lIHgxPSIyOTIiIHkxPSI1MzAiIHgyPSIyODgiIHkyPSIzNDAiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjg1KSIgc3Ryb2tlLXdpZHRoPSIxNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSBIZWFkIC0tPgogIDxjaXJjbGUgY3g9IjI4NSIgY3k9IjMwOCIgcj0iMzgiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjg1KSIgc3Ryb2tlLXdpZHRoPSIxMCIvPgogIDwhLS0gSGlnaCBraWNrIGxlZyAtLT4KICA8bGluZSB4MT0iMjkyIiB5MT0iNTMwIiB4Mj0iMzQwIiB5Mj0iNDIwIiBzdHJva2U9InJnYmEoMTkyLDU3LDQzLDAuOSkiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIzNDAiIHkxPSI0MjAiIHgyPSI0NjAiIHkyPSIzMDUiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC45KSIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSBGb290IC0tPgogIDxlbGxpcHNlIGN4PSI0NzUiIGN5PSIyOTYiIHJ4PSIyOCIgcnk9IjE2IiBmaWxsPSJyZ2JhKDE5Miw1Nyw0MywwLjkpIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjUgNDc1IDI5NikiLz4KICA8IS0tIEJhY2sgYXJtIGd1YXJkIC0tPgogIDxsaW5lIHgxPSIyODgiIHkxPSIzOTAiIHgyPSIyMzUiIHkyPSI0NDAiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjc1KSIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjIzNSIgeTE9IjQ0MCIgeDI9IjIyMCIgeTI9IjQ5MCIgc3Ryb2tlPSJyZ2JhKDIyNCwyMTYsMjA0LDAuNzUpIiBzdHJva2Utd2lkdGg9IjEwIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEZyb250IGFybSBleHRlbmRlZCAtLT4KICA8bGluZSB4MT0iMjg4IiB5MT0iMzkwIiB4Mj0iMzU1IiB5Mj0iMzc1IiBzdHJva2U9InJnYmEoMjI0LDIxNiwyMDQsMC43NSkiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIzNTUiIHkxPSIzNzUiIHgyPSIzNjgiIHkyPSI0MDAiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjc1KSIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEJlbHQgLS0+CiAgPGxpbmUgeDE9IjI2OCIgeTE9IjQ2OCIgeDI9IjMxMiIgeTI9IjQ2MiIgc3Ryb2tlPSJyZ2JhKDIwMSwxNjgsNzYsMC43KSIgc3Ryb2tlLXdpZHRoPSI1Ii8+CiAgPCEtLSBNb3Rpb24gbGluZXMgLS0+CiAgPGxpbmUgeDE9IjM5NSIgeTE9IjI4MCIgeDI9IjQ5MCIgeTI9IjI1MiIgc3Ryb2tlPSJyZ2JhKDE5Miw1Nyw0MywwLjI1KSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI4LDYiLz4KICA8bGluZSB4MT0iMzgwIiB5MT0iMzAwIiB4Mj0iNDc1IiB5Mj0iMjc1IiBzdHJva2U9InJnYmEoMTkyLDU3LDQzLDAuMTgpIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWRhc2hhcnJheT0iNiw3Ii8+Cjwvc3ZnPg=="
+      alt="Karate practitioner"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;mix-blend-mode:luminosity;"
+      >
+    <div class="hero-circle"></div>
+    <div class="hero-kanji-bg">空手</div>
+  </div>
+</section>
+
+<!-- STRIPE -->
+<div class="stripe">
+  <div class="stripe-item">Free shipping over $80</div>
+  <div class="stripe-dot"></div>
+  <div class="stripe-item">Lifetime dojo membership available</div>
+  <div class="stripe-dot"></div>
+  <div class="stripe-item">Online courses in 6 languages</div>
+  <div class="stripe-dot"></div>
+  <div class="stripe-item">30-day gear guarantee</div>
+  <div class="stripe-dot"></div>
+  <div class="stripe-item">Trial class always free</div>
+</div>
+
+<!-- GEAR -->
+<section class="gear-section" id="gear">
+  <div class="section-label">Premium Equipment</div>
+  <h2 class="section-title">Forge Your Discipline<br>With the Right Gear</h2>
+  <p class="section-sub">Every piece of equipment tested by our black-belt instructors. No compromise on quality.</p>
+
+  <div class="gear-grid">
+
+    <div class="gear-card gear-card-featured">
+      <div class="gear-badge">Best Seller</div>
+      <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iZ2kiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjYwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMTYxNCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSJ1cmwoI2dpKSIvPgogIDwhLS0gR0kgamFja2V0IC0gdG9yc28gLS0+CiAgPHBhdGggZD0iTTEzMCA2MCBMMTMwIDIzMCBMMjcwIDIzMCBMMjcwIDYwIFoiIGZpbGw9IiNkOGQwYzQiIG9wYWNpdHk9IjAuOSIvPgogIDwhLS0gTGVmdCBsYXBlbCAtLT4KICA8cGF0aCBkPSJNMjAwIDYwIEwxNTAgMTEwIEwxNjAgMjMwIEwyMDAgMjMwIFoiIGZpbGw9IiNjOGMwYjQiLz4KICA8IS0tIFJpZ2h0IGxhcGVsIC0tPgogIDxwYXRoIGQ9Ik0yMDAgNjAgTDI1MCAxMTAgTDI0MCAyMzAgTDIwMCAyMzAgWiIgZmlsbD0iI2M4YzBiNCIvPgogIDwhLS0gTGFwZWwgViAtLT4KICA8cGF0aCBkPSJNMjAwIDYwIEwxNjUgMTAwIE0yMDAgNjAgTDIzNSAxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2E4OTg4OCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPCEtLSBMZWZ0IHNsZWV2ZSAtLT4KICA8cGF0aCBkPSJNMTMwIDgwIEw4MCAxNDAgTDk1IDE1NSBMMTQ4IDEwMCBaIiBmaWxsPSIjZDBjOGJjIi8+CiAgPCEtLSBSaWdodCBzbGVldmUgLS0+CiAgPHBhdGggZD0iTTI3MCA4MCBMMzIwIDE0MCBMMzA1IDE1NSBMMjUyIDEwMCBaIiBmaWxsPSIjZDBjOGJjIi8+CiAgPCEtLSBCbGFjayBiZWx0IC0tPgogIDxyZWN0IHg9IjEyOCIgeT0iMTk1IiB3aWR0aD0iMTQ0IiBoZWlnaHQ9IjE4IiByeD0iMiIgZmlsbD0iIzFhMTYxNCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iMjAwIiB5MT0iMTk1IiB4Mj0iMjAwIiB5Mj0iMjEzIiBzdHJva2U9IiMyYTJhMmEiIHN0cm9rZS13aWR0aD0iMiIvPgogIDwhLS0gQmVsdCBrbm90IC0tPgogIDxyZWN0IHg9IjE4NiIgeT0iMTk2IiB3aWR0aD0iMjgiIGhlaWdodD0iMTYiIHJ4PSIyIiBmaWxsPSIjMTExIi8+CiAgPCEtLSBTdGl0Y2hpbmcgZGV0YWlsIG9uIGxhcGVsIC0tPgogIDxwYXRoIGQ9Ik0xNjUgMTA1IEwxNzUgMjMwIiBmaWxsPSJub25lIiBzdHJva2U9IiNiMGE4OTgiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iNCwzIi8+CiAgPHBhdGggZD0iTTIzNSAxMDUgTDIyNSAyMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2IwYTg5OCIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSI0LDMiLz4KICA8IS0tIENvbGxhciAtLT4KICA8cGF0aCBkPSJNMTc1IDYwIEwyMDAgOTAgTDIyNSA2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTg5ODg4IiBzdHJva2Utd2lkdGg9IjIuNSIvPgogIDx0ZXh0IHg9IjQwIiB5PSIyNzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0icmdiYSgyMDEsMTY4LDc2LDAuNikiIGxldHRlci1zcGFjaW5nPSIyIj5LQVJBVEUgR0kg4oCUIENPTVBFVElUSU9OIEdSQURFPC90ZXh0Pgo8L3N2Zz4=" alt="Karate Gi uniform" style="width:100%; height:160px; object-fit:cover; border-radius:3px; margin-bottom:1.2rem;" onerror="this.src='https://images.unsplash.com/photo-1564415315949-7a0c4c73aab4?w=600&q=80'">
+      <div class="gear-cat">Uniforms</div>
+      <div class="gear-name">Sensei Pro Gi — Competition Grade</div>
+      <p class="gear-desc">12oz pearl weave canvas. Pre-shrunk double-stitched lapel. Used by World Karate Federation competitors across 40 countries.</p>
+      <div class="gear-price">$129 <span>from</span></div>
+    </div>
+
+    <div class="gear-card">
+      <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI4MCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iZ2wiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjYwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMDgwOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjgwIiBmaWxsPSJ1cmwoI2dsKSIvPgogIDwhLS0gTGVmdCBnbG92ZSAtLT4KICA8cGF0aCBkPSJNODAgMTAwIFE3NSA4MCA5MCA3MCBRMTEwIDU4IDEzMCA2NSBMMTQ1IDY4IFExNjAgNjUgMTY1IDgwIEwxNjggMTQwIFExNjUgMTcwIDE0NSAxNzggTDk1IDE4MCBRNzUgMTc1IDc1IDE1NSBaIiBmaWxsPSIjYzAzOTJiIi8+CiAgPCEtLSBGaW5nZXIgYnVtcHMgbGVmdCAtLT4KICA8cGF0aCBkPSJNMTAwIDY4IFE5NSA1MCAxMDAgNDIgUTEwOCAzNiAxMTUgNDQgTDExNSA2OCIgZmlsbD0iI2E5MzIyNiIvPgogIDxwYXRoIGQ9Ik0xMTggNjYgUTExNCA0NyAxMjAgNDAgUTEyOCAzNCAxMzUgNDIgTDEzNCA2NiIgZmlsbD0iI2E5MzIyNiIvPgogIDxwYXRoIGQ9Ik0xMzYgNjggUTEzMyA1MCAxMzggNDQgUTE0NiAzOCAxNTIgNDYgTDE1MCA2OCIgZmlsbD0iI2E5MzIyNiIvPgogIDwhLS0gS251Y2tsZSBwYWRkaW5nIGxlZnQgLS0+CiAgPHBhdGggZD0iTTkyIDk1IFExMjIgODUgMTU4IDkyIEwxNjAgMTE4IFExMjUgMTI4IDg4IDEyMCBaIiBmaWxsPSIjOTYyODFiIiBvcGFjaXR5PSIwLjgiLz4KICA8IS0tIFdyaXN0IHN0cmFwIGxlZnQgLS0+CiAgPHJlY3QgeD0iNzYiIHk9IjE1MiIgd2lkdGg9IjkyIiBoZWlnaHQ9IjIyIiByeD0iNCIgZmlsbD0iIzIyMiIgb3BhY2l0eT0iMC45Ii8+CiAgPGxpbmUgeDE9IjgwIiB5MT0iMTYzIiB4Mj0iMTYyIiB5Mj0iMTYzIiBzdHJva2U9IiM0NDQiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gUmlnaHQgZ2xvdmUgLS0+CiAgPHBhdGggZD0iTTIzNSAxMDAgUTIzMyA4MCAyNDggNzAgUTI2OCA1OCAyOTAgNjUgTDMwNSA2OCBRMzIwIDY1IDMyMiA4MCBMMzIyIDE0MCBRMzE4IDE3MCAyOTggMTc4IEwyNDggMTgwIFEyMzAgMTc1IDIyOCAxNTUgWiIgZmlsbD0iI2MwMzkyYiIvPgogIDwhLS0gRmluZ2VyIGJ1bXBzIHJpZ2h0IC0tPgogIDxwYXRoIGQ9Ik0yNTIgNjggUTI0OCA1MCAyNTQgNDIgUTI2MiAzNiAyNjggNDQgTDI2OCA2OCIgZmlsbD0iI2E5MzIyNiIvPgogIDxwYXRoIGQ9Ik0yNzAgNjYgUTI2NyA0NyAyNzQgNDAgUTI4MiAzNCAyODggNDIgTDI4NyA2NiIgZmlsbD0iI2E5MzIyNiIvPgogIDxwYXRoIGQ9Ik0yODggNjggUTI4NiA1MCAyOTIgNDQgUTMwMCAzOCAzMDYgNDYgTDMwMyA2OCIgZmlsbD0iI2E5MzIyNiIvPgogIDwhLS0gS251Y2tsZSBwYWRkaW5nIHJpZ2h0IC0tPgogIDxwYXRoIGQ9Ik0yNDIgOTUgUTI3MiA4NSAzMTQgOTIgTDMxNiAxMTggUTI3OCAxMjggMjM4IDEyMCBaIiBmaWxsPSIjOTYyODFiIiBvcGFjaXR5PSIwLjgiLz4KICA8IS0tIFdyaXN0IHN0cmFwIHJpZ2h0IC0tPgogIDxyZWN0IHg9IjIyOCIgeT0iMTUyIiB3aWR0aD0iOTIiIGhlaWdodD0iMjIiIHJ4PSI0IiBmaWxsPSIjMjIyIiBvcGFjaXR5PSIwLjkiLz4KICA8bGluZSB4MT0iMjMyIiB5MT0iMTYzIiB4Mj0iMzE0IiB5Mj0iMTYzIiBzdHJva2U9IiM0NDQiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjEwMCIgeT0iMjU1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9InJnYmEoMjAxLDE2OCw3NiwwLjYpIiBsZXR0ZXItc3BhY2luZz0iMiI+SU1QQUNUIEdVQVJEIEdMT1ZFUzwvdGV4dD4KPC9zdmc+" alt="Karate sparring gloves" style="width:100%; height:130px; object-fit:cover; border-radius:3px; margin-bottom:1rem;" onerror="this.src='https://images.unsplash.com/photo-1516939884455-1445c8652f83?w=600&q=80'">
+      <div class="gear-cat">Protection</div>
+      <div class="gear-name">Impact Guard Gloves</div>
+      <p class="gear-desc">Full-foam knuckle protection. Open-palm design for clean kihon technique.</p>
+      <div class="gear-price">$44 <span>pair</span></div>
+    </div>
+
+    <div class="gear-card">
+      <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI4MCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0ic2ciIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjYwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMDgwOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjgwIiBmaWxsPSJ1cmwoI3NnKSIvPgogIDwhLS0gTGVmdCBzaGluIGd1YXJkIC0tPgogIDxwYXRoIGQ9Ik0xMDAgNDAgUTkwIDM4IDg1IDU1IEw4MiAyMDAgUTg0IDIyNSAxMDAgMjI4IEwxNDAgMjI4IFExNTYgMjI1IDE1OCAyMDAgTDE1NSA1NSBRMTUwIDM4IDE0MCA0MCBaIiBmaWxsPSIjMWEzYTZlIi8+CiAgPCEtLSBTaGluIHBhZCBzdXJmYWNlIC0tPgogIDxwYXRoIGQ9Ik05OCA1MiBROTIgNTAgODggNjUgTDg1IDE5NSBRODcgMjE1IDEwMCAyMTcgTDE0MCAyMTcgUTE1MyAyMTUgMTU1IDE5NSBMMTUyIDY1IFExNDggNTAgMTQyIDUyIFoiIGZpbGw9IiMyYTVhOWUiIG9wYWNpdHk9IjAuOCIvPgogIDwhLS0gU3RyYXBzIGxlZnQgLS0+CiAgPHJlY3QgeD0iNzgiIHk9IjgwIiB3aWR0aD0iODIiIGhlaWdodD0iMTIiIHJ4PSIzIiBmaWxsPSIjMWExNjE0Ii8+CiAgPHJlY3QgeD0iNzgiIHk9IjE1MCIgd2lkdGg9IjgyIiBoZWlnaHQ9IjEyIiByeD0iMyIgZmlsbD0iIzFhMTYxNCIvPgogIDwhLS0gSW5zdGVwIGZvb3QgbGVmdCAtLT4KICA8cGF0aCBkPSJNODggMjE4IFE4OCAyNDAgMTA1IDI0OCBMMTM1IDI0OCBRMTUyIDI0MCAxNTIgMjE4IFoiIGZpbGw9IiMyYTVhOWUiLz4KICA8IS0tIExvZ28gbGluZSAtLT4KICA8bGluZSB4MT0iMTA4IiB5MT0iMTIwIiB4Mj0iMTMyIiB5Mj0iMTIwIiBzdHJva2U9InJnYmEoMjAxLDE2OCw3NiwwLjYpIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8IS0tIFJpZ2h0IHNoaW4gZ3VhcmQgLS0+CiAgPHBhdGggZD0iTTI0NSA0MCBRMjM1IDM4IDIzMCA1NSBMMjI3IDIwMCBRMjI5IDIyNSAyNDUgMjI4IEwyODUgMjI4IFEzMDEgMjI1IDMwMyAyMDAgTDMwMCA1NSBRMjk1IDM4IDI4NSA0MCBaIiBmaWxsPSIjMWEzYTZlIi8+CiAgPHBhdGggZD0iTTI0MyA1MiBRMjM3IDUwIDIzMyA2NSBMMjMwIDE5NSBRMjMyIDIxNSAyNDUgMjE3IEwyODUgMjE3IFEyOTggMjE1IDMwMCAxOTUgTDI5NyA2NSBRMjkzIDUwIDI4NyA1MiBaIiBmaWxsPSIjMmE1YTllIiBvcGFjaXR5PSIwLjgiLz4KICA8cmVjdCB4PSIyMjMiIHk9IjgwIiB3aWR0aD0iODIiIGhlaWdodD0iMTIiIHJ4PSIzIiBmaWxsPSIjMWExNjE0Ii8+CiAgPHJlY3QgeD0iMjIzIiB5PSIxNTAiIHdpZHRoPSI4MiIgaGVpZ2h0PSIxMiIgcng9IjMiIGZpbGw9IiMxYTE2MTQiLz4KICA8cGF0aCBkPSJNMjMzIDIxOCBRMjMzIDI0MCAyNTAgMjQ4IEwyODAgMjQ4IFEyOTcgMjQwIDI5NyAyMTggWiIgZmlsbD0iIzJhNWE5ZSIvPgogIDxsaW5lIHgxPSIyNTMiIHkxPSIxMjAiIHgyPSIyNzciIHkyPSIxMjAiIHN0cm9rZT0icmdiYSgyMDEsMTY4LDc2LDAuNikiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjEwOCIgeT0iMjcyIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9InJnYmEoMjAxLDE2OCw3NiwwLjYpIiBsZXR0ZXItc3BhY2luZz0iMiI+U0hJTiAmYW1wOyBJTlNURVAgR1VBUkRTPC90ZXh0Pgo8L3N2Zz4=" alt="Shin Guards" style="width:100%;height:120px;object-fit:cover;border-radius:3px;margin-bottom:1rem;filter:grayscale(20%)" onerror="this.src='https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80'; this.onerror=null">
+      <div class="gear-cat">Protection</div>
+      <div class="gear-name">Shin & Instep Guards</div>
+      <p class="gear-desc">Elastic-fit high-density foam. WKF approved for tournament use.</p>
+      <div class="gear-price">$38 <span>pair</span></div>
+    </div>
+
+    <div class="gear-card">
+      <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iYmwiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjYwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzE4MTIxMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2JsKSIvPgogIDwhLS0gQmVsdCBib2R5IC0tPgogIDxyZWN0IHg9IjMwIiB5PSI2OCIgd2lkdGg9IjM0MCIgaGVpZ2h0PSI2NCIgcng9IjYiIGZpbGw9IiMxMTEiLz4KICA8IS0tIEJlbHQgdGV4dHVyZSBsaW5lcyAtLT4KICA8cmVjdCB4PSIzMCIgeT0iNzIiIHdpZHRoPSIzNDAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IiMxYTFhMWEiLz4KICA8cmVjdCB4PSIzMCIgeT0iMTIwIiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjMWExYTFhIi8+CiAgPCEtLSBCZWx0IGNlbnRlciBrbm90IC0tPgogIDxyZWN0IHg9IjE2MiIgeT0iNjIiIHdpZHRoPSI3NiIgaGVpZ2h0PSI3NiIgcng9IjQiIGZpbGw9IiMwZTBlMGUiIHN0cm9rZT0iIzIyMiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPCEtLSBLbm90IGRldGFpbCAtLT4KICA8cGF0aCBkPSJNMTgwIDgwIFEyMDAgNzIgMjIwIDgwIEwyMjIgODggUTIwMCA4MiAxNzggODggWiIgZmlsbD0iIzFhMWExYSIvPgogIDxwYXRoIGQ9Ik0xNzggMTEyIFEyMDAgMTE4IDIyMiAxMTIgTDIyMCAxMjAgUTIwMCAxMjggMTgwIDEyMCBaIiBmaWxsPSIjMWExYTFhIi8+CiAgPHJlY3QgeD0iMTcwIiB5PSI4OCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjI0IiByeD0iMiIgZmlsbD0iIzE0MTQxNCIvPgogIDwhLS0gRGFuIHN0cmlwZXMgb24gbGVmdCB0YWlsIC0tPgogIDxyZWN0IHg9IjM4IiB5PSI3MiIgd2lkdGg9IjgiIGhlaWdodD0iNTYiIHJ4PSIxIiBmaWxsPSIjYzlhODRjIiBvcGFjaXR5PSIwLjkiLz4KICA8cmVjdCB4PSI1MCIgeT0iNzIiIHdpZHRoPSI4IiBoZWlnaHQ9IjU2IiByeD0iMSIgZmlsbD0iI2M5YTg0YyIgb3BhY2l0eT0iMC45Ii8+CiAgPHJlY3QgeD0iNjIiIHk9IjcyIiB3aWR0aD0iOCIgaGVpZ2h0PSI1NiIgcng9IjEiIGZpbGw9IiNjOWE4NGMiIG9wYWNpdHk9IjAuOSIvPgogIDwhLS0gV0tGIHRleHQgb24gYmVsdCAtLT4KICA8dGV4dCB4PSIyOTAiIHk9IjEwNCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjkiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiIGxldHRlci1zcGFjaW5nPSIxIiBmb250LXdlaWdodD0iYm9sZCI+V0tGPC90ZXh0PgogIDx0ZXh0IHg9IjkwIiB5PSIxMDgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI5IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiIGxldHRlci1zcGFjaW5nPSIxIj5TSE9UT0tBTjwvdGV4dD4KICA8dGV4dCB4PSIxMTAiIHk9IjE3MiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiBmaWxsPSJyZ2JhKDIwMSwxNjgsNzYsMC42KSIgbGV0dGVyLXNwYWNpbmc9IjIiPkhBTkQtU1RJVENIRUQgUkFOSyBCRUxUIOKAlCBCTEFDSzwvdGV4dD4KPC9zdmc+" alt="Karate black belt" style="width:100%; height:130px; object-fit:cover; border-radius:3px; margin-bottom:1rem;" onerror="this.src='https://images.unsplash.com/photo-1598966739654-5e9a252d8c45?w=600&q=80'">
+      <div class="gear-cat">Belts</div>
+      <div class="gear-name">Hand-Stitched Rank Belts</div>
+      <p class="gear-desc">Traditional 7-layer cotton. All kyu and dan grades available.</p>
+      <div class="gear-price">$22 <span>each</span></div>
+    </div>
+
+    <div class="gear-card">
+      <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0ibWsiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjYwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMTAwOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSJ1cmwoI21rKSIvPgogIDwhLS0gV2FsbCAtLT4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iODAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMWExNjE0Ii8+CiAgPGxpbmUgeDE9IjgwIiB5MT0iMCIgeDI9IjgwIiB5Mj0iMzAwIiBzdHJva2U9IiMyMjIiIHN0cm9rZS13aWR0aD0iMiIvPgogIDwhLS0gV2FsbCBtb3VudCBib2x0cyAtLT4KICA8Y2lyY2xlIGN4PSI0MiIgY3k9IjYwIiByPSI2IiBmaWxsPSIjMzMzIi8+CiAgPGNpcmNsZSBjeD0iNDIiIGN5PSIyNDAiIHI9IjYiIGZpbGw9IiMzMzMiLz4KICA8IS0tIFNwcmluZyBzdGVlbCBwb3N0IC0tPgogIDxyZWN0IHg9IjMwIiB5PSI1NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjE5MCIgcng9IjQiIGZpbGw9IiMyYTI1MjAiLz4KICA8IS0tIFBvc3Qgd29vZCBncmFpbiAtLT4KICA8bGluZSB4MT0iMzYiIHkxPSI2MCIgeDI9IjM2IiB5Mj0iMjQwIiBzdHJva2U9IiMxYTE0MTAiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC41Ii8+CiAgPGxpbmUgeDE9IjQyIiB5MT0iNjAiIHgyPSI0MiIgeTI9IjI0MCIgc3Ryb2tlPSIjMWExNDEwIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNSIvPgogIDxsaW5lIHgxPSI0OCIgeTE9IjYwIiB4Mj0iNDgiIHkyPSIyNDAiIHN0cm9rZT0iIzFhMTQxMCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjUiLz4KICA8IS0tIFN0cmlrZSBwYWQgLSB3cmFwcGVkIGluIHJvcGUgLS0+CiAgPHJlY3QgeD0iMjUiIHk9IjEwMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMDAiIHJ4PSI4IiBmaWxsPSIjNGEzYTI4Ii8+CiAgPCEtLSBSb3BlIHdyYXBwaW5nIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIyNSIgeTE9IjExMiIgeDI9IjIyNSIgeTI9IjExMiIgc3Ryb2tlPSIjNWE0YTM4IiBzdHJva2Utd2lkdGg9IjMiLz4KICA8bGluZSB4MT0iMjUiIHkxPSIxMjQiIHgyPSIyMjUiIHkyPSIxMjQiIHN0cm9rZT0iIzNhMmExOCIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGxpbmUgeDE9IjI1IiB5MT0iMTM2IiB4Mj0iMjI1IiB5Mj0iMTM2IiBzdHJva2U9IiM1YTRhMzgiIHN0cm9rZS13aWR0aD0iMyIvPgogIDxsaW5lIHgxPSIyNSIgeTE9IjE0OCIgeDI9IjIyNSIgeTI9IjE0OCIgc3Ryb2tlPSIjM2EyYTE4IiBzdHJva2Utd2lkdGg9IjMiLz4KICA8bGluZSB4MT0iMjUiIHkxPSIxNjAiIHgyPSIyMjUiIHkyPSIxNjAiIHN0cm9rZT0iIzVhNGEzOCIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGxpbmUgeDE9IjI1IiB5MT0iMTcyIiB4Mj0iMjI1IiB5Mj0iMTcyIiBzdHJva2U9IiMzYTJhMTgiIHN0cm9rZS13aWR0aD0iMyIvPgogIDxsaW5lIHgxPSIyNSIgeTE9IjE4NCIgeDI9IjIyNSIgeTI9IjE4NCIgc3Ryb2tlPSIjNWE0YTM4IiBzdHJva2Utd2lkdGg9IjMiLz4KICA8IS0tIEltcGFjdCB6b25lIGhpZ2hsaWdodCAtLT4KICA8cmVjdCB4PSIxNTAiIHk9IjEwNCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjkyIiByeD0iNCIgZmlsbD0icmdiYSgxOTIsNTcsNDMsMC4xNSkiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC4zKSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPCEtLSBGaXN0IGltcGFjdCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMjMwIiB5MT0iMTMwIiB4Mj0iMjcwIiB5Mj0iMTEwIiBzdHJva2U9InJnYmEoMTkyLDU3LDQzLDAuNSkiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNCwzIi8+CiAgPGxpbmUgeDE9IjIzMCIgeTE9IjE1MCIgeDI9IjI4MCIgeTI9IjE1MCIgc3Ryb2tlPSJyZ2JhKDE5Miw1Nyw0MywwLjUpIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjQsMyIvPgogIDxsaW5lIHgxPSIyMzAiIHkxPSIxNzAiIHgyPSIyNjgiIHkyPSIxODUiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC41KSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI0LDMiLz4KICA8IS0tIEZpc3QgLS0+CiAgPHJlY3QgeD0iMjY1IiB5PSIxMjgiIHdpZHRoPSIzNiIgaGVpZ2h0PSIyOCIgcng9IjYiIGZpbGw9IiNlMGQ4Y2MiLz4KICA8bGluZSB4MT0iMjY1IiB5MT0iMTM2IiB4Mj0iMjY1IiB5Mj0iMTQ5IiBzdHJva2U9IiNjMGI4YWMiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxsaW5lIHgxPSIyNzIiIHkxPSIxMjkiIHgyPSIyNzIiIHkyPSIxNTUiIHN0cm9rZT0iI2MwYjhhYyIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGxpbmUgeDE9IjI4MCIgeTE9IjEyOSIgeDI9IjI4MCIgeTI9IjE1NSIgc3Ryb2tlPSIjYzBiOGFjIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iMjg4IiB5MT0iMTI5IiB4Mj0iMjg4IiB5Mj0iMTU1IiBzdHJva2U9IiNjMGI4YWMiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjkwIiB5PSIyNzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0icmdiYSgyMDEsMTY4LDc2LDAuNikiIGxldHRlci1zcGFjaW5nPSIyIj5NQUtJV0FSQSBTVFJJS0lORyBCT0FSRDwvdGV4dD4KPC9zdmc+" alt="Makiwara striking board" style="width:100%; height:130px; object-fit:cover; border-radius:3px; margin-bottom:1rem;" onerror="this.src='https://images.unsplash.com/photo-1516960999-af7b26bb9296?w=600&q=80'">
+      <div class="gear-cat">Training</div>
+      <div class="gear-name">Makiwara Striking Board</div>
+      <p class="gear-desc">Wall-mounted spring-steel post with wrapped pad. Builds kime and knuckle conditioning.</p>
+      <div class="gear-price">$85 <span>unit</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses-section" id="courses">
+  <div class="courses-inner">
+
+    <div>
+      <div class="section-label">Online Training</div>
+      <h2 class="section-title">Learn From<br>Anywhere in<br>the World</h2>
+      <p class="section-sub">Structured video curricula filmed in our Okinawa dojo. Progress at your own pace with milestone belt reviews.</p>
+      <a href="#" class="btn-primary" style="margin-top:1rem">Browse All Courses</a>
+    </div>
+
+    <div class="course-list">
+
+      <div class="course-item">
+        <div class="course-num">01</div>
+        <div>
+          <div class="course-item-title">Kihon Foundations</div>
+          <div class="course-item-meta">
+            <span>42 lessons</span>
+            <span>•</span>
+            <span>14 hrs</span>
+          </div>
+          <div class="course-belt" style="margin-top:0.4rem">
+            <div class="belt-dot belt-white"></div>
+            <span style="color:rgba(253,250,244,0.4); font-size:0.72rem; letter-spacing:0.1em">WHITE → YELLOW</span>
+          </div>
+        </div>
+        <div class="course-price-tag">$49</div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-num">02</div>
+        <div>
+          <div class="course-item-title">Kata: Heian Series</div>
+          <div class="course-item-meta">
+            <span>55 lessons</span>
+            <span>•</span>
+            <span>20 hrs</span>
+          </div>
+          <div class="course-belt" style="margin-top:0.4rem">
+            <div class="belt-dot belt-yellow"></div>
+            <span style="color:rgba(253,250,244,0.4); font-size:0.72rem; letter-spacing:0.1em">YELLOW → GREEN</span>
+          </div>
+        </div>
+        <div class="course-price-tag">$69</div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-num">03</div>
+        <div>
+          <div class="course-item-title">Kumite Sparring Tactics</div>
+          <div class="course-item-meta">
+            <span>38 lessons</span>
+            <span>•</span>
+            <span>16 hrs</span>
+          </div>
+          <div class="course-belt" style="margin-top:0.4rem">
+            <div class="belt-dot belt-blue"></div>
+            <span style="color:rgba(253,250,244,0.4); font-size:0.72rem; letter-spacing:0.1em">BLUE → BROWN</span>
+          </div>
+        </div>
+        <div class="course-price-tag">$89</div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-num">04</div>
+        <div>
+          <div class="course-item-title">Advanced Kata Mastery</div>
+          <div class="course-item-meta">
+            <span>60 lessons</span>
+            <span>•</span>
+            <span>28 hrs</span>
+          </div>
+          <div class="course-belt" style="margin-top:0.4rem">
+            <div class="belt-dot belt-brown"></div>
+            <span style="color:rgba(253,250,244,0.4); font-size:0.72rem; letter-spacing:0.1em">BROWN → BLACK</span>
+          </div>
+        </div>
+        <div class="course-price-tag">$119</div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-num">05</div>
+        <div>
+          <div class="course-item-title">Dan Preparation Program</div>
+          <div class="course-item-meta">
+            <span>All levels · Live sessions</span>
+          </div>
+          <div class="course-belt" style="margin-top:0.4rem">
+            <div class="belt-dot belt-black"></div>
+            <span style="color:rgba(253,250,244,0.4); font-size:0.72rem; letter-spacing:0.1em">BLACK BELT · 1ST–3RD DAN</span>
+          </div>
+        </div>
+        <div class="course-price-tag">$199</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DOJO -->
+<section class="dojo-section" id="dojo">
+  <div class="section-label">Our Dojo</div>
+  <h2 class="section-title">Train Where Tradition Lives</h2>
+  <p class="section-sub">Our physical dojo in downtown holds classes 6 days a week. All ages, all levels. Come as you are.</p>
+
+  <div class="dojo-grid">
+    <div class="dojo-features">
+
+      <div class="dojo-feature">
+        <div class="dojo-feature-icon" style="overflow:hidden; padding:0;"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI4MCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJkaiIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWExMDA4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBhMDgwNiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyODAiIGZpbGw9InVybCgjZGopIi8+CiAgPCEtLSBGbG9vciBwZXJzcGVjdGl2ZSAtLT4KICA8cGF0aCBkPSJNMCAyMjAgTDIwMCAxNDAgTDQwMCAyMjAgTDQwMCAyODAgTDAgMjgwIFoiIGZpbGw9IiMxNDEwMGMiLz4KICA8bGluZSB4MT0iMCIgeTE9IjIyMCIgeDI9IjQwMCIgeTI9IjIyMCIgc3Ryb2tlPSJyZ2JhKDIwMSwxNjgsNzYsMC4xNSkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gRmxvb3IgbGluZXMgKHRhdGFtaSBncmlkKSAtLT4KICA8bGluZSB4MT0iMTAwIiB5MT0iMjIwIiB4Mj0iMjAwIiB5Mj0iMTQwIiBzdHJva2U9InJnYmEoMjAxLDE2OCw3NiwwLjA2KSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGxpbmUgeDE9IjIwMCIgeTE9IjIyMCIgeDI9IjIwMCIgeTI9IjE0MCIgc3Ryb2tlPSJyZ2JhKDIwMSwxNjgsNzYsMC4wNikiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxsaW5lIHgxPSIzMDAiIHkxPSIyMjAiIHgyPSIyMDAiIHkyPSIxNDAiIHN0cm9rZT0icmdiYSgyMDEsMTY4LDc2LDAuMDYpIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iNTAiIHkxPSIyNTAiIHgyPSIzNTAiIHkyPSIyNTAiIHN0cm9rZT0icmdiYSgyMDEsMTY4LDc2LDAuMDQpIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8IS0tIEJhY2sgd2FsbCAtLT4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIyMCIgZmlsbD0iIzExMGQwYSIvPgogIDwhLS0gU2hvbWVuIHdhbGwgKGZyb250IHdhbGwgb2YgZG9qbykgLS0+CiAgPHJlY3QgeD0iNjAiIHk9IjIwIiB3aWR0aD0iMjgwIiBoZWlnaHQ9IjE2MCIgZmlsbD0iIzE0MGYwYiIgc3Ryb2tlPSJyZ2JhKDIwMSwxNjgsNzYsMC4xMikiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gQ2FsbGlncmFwaHkgc2Nyb2xsIG9uIHNob21lbiAtLT4KICA8cmVjdCB4PSIxNjgiIHk9IjMwIiB3aWR0aD0iNjQiIGhlaWdodD0iMTIwIiBmaWxsPSIjMGUwYTA4IiBzdHJva2U9InJnYmEoMjAxLDE2OCw3NiwwLjIpIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIyMDAiIHk9IjEzNSIgZm9udC1mYW1pbHk9InNlcmlmIiBmb250LXNpemU9IjcwIiBmaWxsPSJyZ2JhKDIwMSwxNjgsNzYsMC40NSkiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7pgZM8L3RleHQ+CiAgPCEtLSBGbGFncyAvIGVtYmxlbXMgLS0+CiAgPHJlY3QgeD0iODAiIHk9IjM1IiB3aWR0aD0iNTAiIGhlaWdodD0iMzQiIHJ4PSIxIiBmaWxsPSIjMWExNjE0IiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wOCkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxyZWN0IHg9IjI3MCIgeT0iMzUiIHdpZHRoPSI1MCIgaGVpZ2h0PSIzNCIgcng9IjEiIGZpbGw9IiMxYTE2MTQiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjA4KSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPCEtLSBSZWQgZGlzYyBKYXBhbiBmbGFnIGxlZnQgLS0+CiAgPGNpcmNsZSBjeD0iMTA1IiBjeT0iNTIiIHI9IjEwIiBmaWxsPSIjYzAzOTJiIiBvcGFjaXR5PSIwLjciLz4KICA8IS0tIERvam8gbmFtZSBwbGFxdWUgcmlnaHQgLS0+CiAgPHJlY3QgeD0iMjcyIiB5PSIzNyIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjMwIiByeD0iMSIgZmlsbD0iIzFhMTIxMCIvPgogIDxsaW5lIHgxPSIyNzQiIHkxPSI0NyIgeDI9IjMxNiIgeTI9IjQ3IiBzdHJva2U9InJnYmEoMjAxLDE2OCw3NiwwLjMpIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iMjc0IiB5MT0iNTUiIHgyPSIzMTYiIHkyPSI1NSIgc3Ryb2tlPSJyZ2JhKDIwMSwxNjgsNzYsMC4xNSkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gRmxvb3IgbWF0IGxpbmVzIC0tPgogIDxsaW5lIHgxPSI2MCIgeTE9IjE4MCIgeDI9IjM0MCIgeTI9IjE4MCIgc3Ryb2tlPSJyZ2JhKDIwMSwxNjgsNzYsMC4xKSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGxpbmUgeDE9IjYwIiB5MT0iMjAwIiB4Mj0iMzQwIiB5Mj0iMjAwIiBzdHJva2U9InJnYmEoMjAxLDE2OCw3NiwwLjA4KSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPCEtLSBUd28gcHJhY3RpdGlvbmVycyAtLT4KICA8IS0tIFBlcnNvbiAxIC0gbGVmdCAtLT4KICA8Y2lyY2xlIGN4PSIxNDUiIGN5PSIxNjIiIHI9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjI0LDIxNiwyMDQsMC42KSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGxpbmUgeDE9IjE0NSIgeTE9IjE3MiIgeDI9IjE0MyIgeTI9IjIwOCIgc3Ryb2tlPSJyZ2JhKDIyNCwyMTYsMjA0LDAuNikiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjE0MyIgeTE9IjE5MCIgeDI9IjEyNSIgeTI9IjIwMCIgc3Ryb2tlPSJyZ2JhKDIyNCwyMTYsMjA0LDAuNikiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjE0MyIgeTE9IjE5MCIgeDI9IjE2MiIgeTI9IjE4MyIgc3Ryb2tlPSJyZ2JhKDE5Miw1Nyw0MywwLjgpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIxNDMiIHkxPSIyMDgiIHgyPSIxMzAiIHkyPSIyMjIiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjYpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIxNDMiIHkxPSIyMDgiIHgyPSIxNTUiIHkyPSIyMjIiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjYpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gUGVyc29uIDIgLSByaWdodCAtLT4KICA8Y2lyY2xlIGN4PSIyNTUiIGN5PSIxNTgiIHI9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjI0LDIxNiwyMDQsMC42KSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGxpbmUgeDE9IjI1NSIgeTE9IjE2OCIgeDI9IjI1MyIgeTI9IjIwNCIgc3Ryb2tlPSJyZ2JhKDIyNCwyMTYsMjA0LDAuNikiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjI1MyIgeTE9IjE4NiIgeDI9IjIzNSIgeTI9IjE3OCIgc3Ryb2tlPSJyZ2JhKDE5Miw1Nyw0MywwLjgpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIyNTMiIHkxPSIxODYiIHgyPSIyNzIiIHkyPSIxOTUiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjYpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIyNTMiIHkxPSIyMDQiIHgyPSIyNDAiIHkyPSIyMTgiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjYpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIyNTMiIHkxPSIyMDQiIHgyPSIyNjUiIHkyPSIyMTgiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjYpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDx0ZXh0IHg9IjExMCIgeT0iMjY4IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9InJnYmEoMjAxLDE2OCw3NiwwLjYpIiBsZXR0ZXItc3BhY2luZz0iMiI+RE9KTyBCVVNISURPIOKAlCBUUkFJTklORyBIQUxMPC90ZXh0Pgo8L3N2Zz4=" alt="Dojo" style="width:100%; height:100%; object-fit:cover;" onerror="this.parentElement.innerHTML='🏯'"></div>
+        <div>
+          <div class="dojo-feature-title">Okinawan Lineage</div>
+          <p class="dojo-feature-desc">Direct transmission from the Shotokan and Shito-ryu schools. Our head instructor trained under Masters in Japan for 15 years.</p>
+        </div>
+      </div>
+
+      <div class="dojo-feature">
+        <div class="dojo-feature-icon" style="overflow:hidden; padding:0;"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI4MCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0ia2siIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjYwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBhMGExOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjgwIiBmaWxsPSJ1cmwoI2trKSIvPgogIDxsaW5lIHgxPSI1MCIgeTE9IjI1NSIgeDI9IjM1MCIgeTI9IjI1NSIgc3Ryb2tlPSJyZ2JhKDE5Miw1Nyw0MywwLjIpIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8IS0tIFRocmVlIGtpZHMgaW4gYSByb3cgLSBkaWZmZXJlbnQgYmVsdCBsZXZlbHMgLS0+CiAgPCEtLSBLaWQgMSAod2hpdGUgYmVsdCwgc21hbGwpIC0tPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjExMCIgcj0iMTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjcpIiBzdHJva2Utd2lkdGg9IjMiLz4KICA8bGluZSB4MT0iMTAwIiB5MT0iMTI2IiB4Mj0iOTgiIHkyPSIxODUiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjcpIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gcHVuY2ggLS0+CiAgPGxpbmUgeDE9Ijk4IiB5MT0iMTQ4IiB4Mj0iMTI1IiB5Mj0iMTQwIiBzdHJva2U9InJnYmEoMTkyLDU3LDQzLDAuOCkiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9Ijk4IiB5MT0iMTQ4IiB4Mj0iNzUiIHkyPSIxNTUiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjcpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSI5OCIgeTE9IjE4NSIgeDI9Ijg0IiB5Mj0iMjU1IiBzdHJva2U9InJnYmEoMjI0LDIxNiwyMDQsMC43KSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iOTgiIHkxPSIxODUiIHgyPSIxMTIiIHkyPSIyNTUiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjcpIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSI4NCIgeTE9IjE2NiIgeDI9Ijk0IiB5Mj0iMTY4IiBzdHJva2U9InJnYmEoMjQwLDI0MCwyNDAsMC42KSIgc3Ryb2tlLXdpZHRoPSIyLjUiLz4KICA8dGV4dCB4PSI4MiIgeT0iMjcyIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iOCIgZmlsbD0icmdiYSgyNDAsMjQwLDI0MCwwLjMpIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5XSElURTwvdGV4dD4KICA8IS0tIEtpZCAyICh5ZWxsb3cgYmVsdCwgbWVkaXVtLCBraWNrIHBvc2UpIC0tPgogIDxjaXJjbGUgY3g9IjIwMCIgY3k9IjEwMCIgcj0iMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjgpIiBzdHJva2Utd2lkdGg9IjMiLz4KICA8bGluZSB4MT0iMjAwIiB5MT0iMTE4IiB4Mj0iMTk4IiB5Mj0iMTc4IiBzdHJva2U9InJnYmEoMjI0LDIxNiwyMDQsMC44KSIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIFN0YW5kaW5nIGxlZyAtLT4KICA8bGluZSB4MT0iMTk4IiB5MT0iMTc4IiB4Mj0iMTkwIiB5Mj0iMjU1IiBzdHJva2U9InJnYmEoMjI0LDIxNiwyMDQsMC44KSIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEtpY2sgLS0+CiAgPGxpbmUgeDE9IjE5OCIgeTE9IjE3OCIgeDI9IjIzMCIgeTI9IjE1MCIgc3Ryb2tlPSJyZ2JhKDE5Miw1Nyw0MywwLjkpIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIyMzAiIHkxPSIxNTAiIHgyPSIyNjgiIHkyPSIxNDgiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC45KSIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8ZWxsaXBzZSBjeD0iMjc1IiBjeT0iMTQ3IiByeD0iMTIiIHJ5PSI3IiBmaWxsPSJyZ2JhKDE5Miw1Nyw0MywwLjkpIi8+CiAgPCEtLSBBcm1zIC0tPgogIDxsaW5lIHgxPSIxOTgiIHkxPSIxMzgiIHgyPSIxNzIiIHkyPSIxNTIiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjcpIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIxOTgiIHkxPSIxMzgiIHgyPSIyMTgiIHkyPSIxMzAiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjcpIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIxODQiIHkxPSIxNjIiIHgyPSIxOTIiIHkyPSIxNjQiIHN0cm9rZT0icmdiYSgyMzAsMjAwLDgwLDAuOCkiIHN0cm9rZS13aWR0aD0iMi41Ii8+CiAgPHRleHQgeD0iMjAwIiB5PSIyNzIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI4IiBmaWxsPSJyZ2JhKDIzMCwyMDAsODAsMC40KSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+WUVMTE9XPC90ZXh0PgogIDwhLS0gS2lkIDMgKG9yYW5nZSBiZWx0LCBzbGlnaHRseSBiaWdnZXIpIC0tPgogIDxjaXJjbGUgY3g9IjMwOCIgY3k9IjEwOCIgcj0iMTciIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjc1KSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGxpbmUgeDE9IjMwOCIgeTE9IjEyNSIgeDI9IjMwNiIgeTI9IjE4MiIgc3Ryb2tlPSJyZ2JhKDIyNCwyMTYsMjA0LDAuNzUpIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gUHVuY2ggZm9yd2FyZCAtLT4KICA8bGluZSB4MT0iMzA2IiB5MT0iMTQ4IiB4Mj0iMzQwIiB5Mj0iMTM4IiBzdHJva2U9InJnYmEoMTkyLDU3LDQzLDAuODUpIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxyZWN0IHg9IjM0MCIgeT0iMTMxIiB3aWR0aD0iMTQiIGhlaWdodD0iMTIiIHJ4PSIzIiBmaWxsPSJyZ2JhKDE5Miw1Nyw0MywwLjg1KSIvPgogIDxsaW5lIHgxPSIzMDYiIHkxPSIxNDgiIHgyPSIyODAiIHkyPSIxNTgiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjY1KSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iMzA2IiB5MT0iMTgyIiB4Mj0iMjkyIiB5Mj0iMjU1IiBzdHJva2U9InJnYmEoMjI0LDIxNiwyMDQsMC43NSkiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjMwNiIgeTE9IjE4MiIgeDI9IjMxOCIgeTI9IjI1NSIgc3Ryb2tlPSJyZ2JhKDIyNCwyMTYsMjA0LDAuNzUpIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIyOTIiIHkxPSIxNjIiIHgyPSIzMDIiIHkyPSIxNjQiIHN0cm9rZT0icmdiYSgyMzIsMTQwLDQ4LDAuOCkiIHN0cm9rZS13aWR0aD0iMi41Ii8+CiAgPHRleHQgeD0iMzEwIiB5PSIyNzIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI4IiBmaWxsPSJyZ2JhKDIzMiwxNDAsNDgsMC40KSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+T1JBTkdFPC90ZXh0PgogIDwhLS0gSW5zdHJ1Y3RvciBzaGFkb3cgbGluZSBhdCBiYWNrIC0tPgogIDxsaW5lIHgxPSI1MCIgeTE9IjEwMCIgeDI9IjUwIiB5Mj0iMjAwIiBzdHJva2U9InJnYmEoMjAxLDE2OCw3NiwwLjE1KSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPHRleHQgeD0iMTEwIiB5PSIyNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiBmaWxsPSJyZ2JhKDIwMSwxNjgsNzYsMC41KSIgbGV0dGVyLXNwYWNpbmc9IjIiPktJRFMgJmFtcDsgWU9VVEggUFJPR1JBTTwvdGV4dD4KPC9zdmc+" alt="Kids karate" style="width:100%; height:100%; object-fit:cover;" onerror="this.parentElement.innerHTML='👦'"></div>
+        <div>
+          <div class="dojo-feature-title">Kids & Adult Programs</div>
+          <p class="dojo-feature-desc">Age-appropriate curricula for children from 6 years, teens, and adults. Family memberships available.</p>
+        </div>
+      </div>
+
+      <div class="dojo-feature">
+        <div class="dojo-feature-icon" style="overflow:hidden; padding:0;"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iYmwiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjYwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzE4MTIxMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2JsKSIvPgogIDwhLS0gQmVsdCBib2R5IC0tPgogIDxyZWN0IHg9IjMwIiB5PSI2OCIgd2lkdGg9IjM0MCIgaGVpZ2h0PSI2NCIgcng9IjYiIGZpbGw9IiMxMTEiLz4KICA8IS0tIEJlbHQgdGV4dHVyZSBsaW5lcyAtLT4KICA8cmVjdCB4PSIzMCIgeT0iNzIiIHdpZHRoPSIzNDAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IiMxYTFhMWEiLz4KICA8cmVjdCB4PSIzMCIgeT0iMTIwIiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjMWExYTFhIi8+CiAgPCEtLSBCZWx0IGNlbnRlciBrbm90IC0tPgogIDxyZWN0IHg9IjE2MiIgeT0iNjIiIHdpZHRoPSI3NiIgaGVpZ2h0PSI3NiIgcng9IjQiIGZpbGw9IiMwZTBlMGUiIHN0cm9rZT0iIzIyMiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPCEtLSBLbm90IGRldGFpbCAtLT4KICA8cGF0aCBkPSJNMTgwIDgwIFEyMDAgNzIgMjIwIDgwIEwyMjIgODggUTIwMCA4MiAxNzggODggWiIgZmlsbD0iIzFhMWExYSIvPgogIDxwYXRoIGQ9Ik0xNzggMTEyIFEyMDAgMTE4IDIyMiAxMTIgTDIyMCAxMjAgUTIwMCAxMjggMTgwIDEyMCBaIiBmaWxsPSIjMWExYTFhIi8+CiAgPHJlY3QgeD0iMTcwIiB5PSI4OCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjI0IiByeD0iMiIgZmlsbD0iIzE0MTQxNCIvPgogIDwhLS0gRGFuIHN0cmlwZXMgb24gbGVmdCB0YWlsIC0tPgogIDxyZWN0IHg9IjM4IiB5PSI3MiIgd2lkdGg9IjgiIGhlaWdodD0iNTYiIHJ4PSIxIiBmaWxsPSIjYzlhODRjIiBvcGFjaXR5PSIwLjkiLz4KICA8cmVjdCB4PSI1MCIgeT0iNzIiIHdpZHRoPSI4IiBoZWlnaHQ9IjU2IiByeD0iMSIgZmlsbD0iI2M5YTg0YyIgb3BhY2l0eT0iMC45Ii8+CiAgPHJlY3QgeD0iNjIiIHk9IjcyIiB3aWR0aD0iOCIgaGVpZ2h0PSI1NiIgcng9IjEiIGZpbGw9IiNjOWE4NGMiIG9wYWNpdHk9IjAuOSIvPgogIDwhLS0gV0tGIHRleHQgb24gYmVsdCAtLT4KICA8dGV4dCB4PSIyOTAiIHk9IjEwNCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjkiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiIGxldHRlci1zcGFjaW5nPSIxIiBmb250LXdlaWdodD0iYm9sZCI+V0tGPC90ZXh0PgogIDx0ZXh0IHg9IjkwIiB5PSIxMDgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI5IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiIGxldHRlci1zcGFjaW5nPSIxIj5TSE9UT0tBTjwvdGV4dD4KICA8dGV4dCB4PSIxMTAiIHk9IjE3MiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiBmaWxsPSJyZ2JhKDIwMSwxNjgsNzYsMC42KSIgbGV0dGVyLXNwYWNpbmc9IjIiPkhBTkQtU1RJVENIRUQgUkFOSyBCRUxUIOKAlCBCTEFDSzwvdGV4dD4KPC9zdmc+" alt="Karate medal" style="width:100%; height:100%; object-fit:cover;" onerror="this.parentElement.innerHTML='🏆'"></div>
+        <div>
+          <div class="dojo-feature-title">Competition Coaching</div>
+          <p class="dojo-feature-desc">Dedicated competition team with entry into regional, national and WKF tournaments. 48 medals in the last 3 years.</p>
+        </div>
+      </div>
+
+      <div class="dojo-feature">
+        <div class="dojo-feature-icon" style="overflow:hidden; padding:0;"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI4MCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJkaiIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWExMDA4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBhMDgwNiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyODAiIGZpbGw9InVybCgjZGopIi8+CiAgPCEtLSBGbG9vciBwZXJzcGVjdGl2ZSAtLT4KICA8cGF0aCBkPSJNMCAyMjAgTDIwMCAxNDAgTDQwMCAyMjAgTDQwMCAyODAgTDAgMjgwIFoiIGZpbGw9IiMxNDEwMGMiLz4KICA8bGluZSB4MT0iMCIgeTE9IjIyMCIgeDI9IjQwMCIgeTI9IjIyMCIgc3Ryb2tlPSJyZ2JhKDIwMSwxNjgsNzYsMC4xNSkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gRmxvb3IgbGluZXMgKHRhdGFtaSBncmlkKSAtLT4KICA8bGluZSB4MT0iMTAwIiB5MT0iMjIwIiB4Mj0iMjAwIiB5Mj0iMTQwIiBzdHJva2U9InJnYmEoMjAxLDE2OCw3NiwwLjA2KSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGxpbmUgeDE9IjIwMCIgeTE9IjIyMCIgeDI9IjIwMCIgeTI9IjE0MCIgc3Ryb2tlPSJyZ2JhKDIwMSwxNjgsNzYsMC4wNikiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxsaW5lIHgxPSIzMDAiIHkxPSIyMjAiIHgyPSIyMDAiIHkyPSIxNDAiIHN0cm9rZT0icmdiYSgyMDEsMTY4LDc2LDAuMDYpIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iNTAiIHkxPSIyNTAiIHgyPSIzNTAiIHkyPSIyNTAiIHN0cm9rZT0icmdiYSgyMDEsMTY4LDc2LDAuMDQpIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8IS0tIEJhY2sgd2FsbCAtLT4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIyMCIgZmlsbD0iIzExMGQwYSIvPgogIDwhLS0gU2hvbWVuIHdhbGwgKGZyb250IHdhbGwgb2YgZG9qbykgLS0+CiAgPHJlY3QgeD0iNjAiIHk9IjIwIiB3aWR0aD0iMjgwIiBoZWlnaHQ9IjE2MCIgZmlsbD0iIzE0MGYwYiIgc3Ryb2tlPSJyZ2JhKDIwMSwxNjgsNzYsMC4xMikiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gQ2FsbGlncmFwaHkgc2Nyb2xsIG9uIHNob21lbiAtLT4KICA8cmVjdCB4PSIxNjgiIHk9IjMwIiB3aWR0aD0iNjQiIGhlaWdodD0iMTIwIiBmaWxsPSIjMGUwYTA4IiBzdHJva2U9InJnYmEoMjAxLDE2OCw3NiwwLjIpIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIyMDAiIHk9IjEzNSIgZm9udC1mYW1pbHk9InNlcmlmIiBmb250LXNpemU9IjcwIiBmaWxsPSJyZ2JhKDIwMSwxNjgsNzYsMC40NSkiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7pgZM8L3RleHQ+CiAgPCEtLSBGbGFncyAvIGVtYmxlbXMgLS0+CiAgPHJlY3QgeD0iODAiIHk9IjM1IiB3aWR0aD0iNTAiIGhlaWdodD0iMzQiIHJ4PSIxIiBmaWxsPSIjMWExNjE0IiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wOCkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxyZWN0IHg9IjI3MCIgeT0iMzUiIHdpZHRoPSI1MCIgaGVpZ2h0PSIzNCIgcng9IjEiIGZpbGw9IiMxYTE2MTQiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjA4KSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPCEtLSBSZWQgZGlzYyBKYXBhbiBmbGFnIGxlZnQgLS0+CiAgPGNpcmNsZSBjeD0iMTA1IiBjeT0iNTIiIHI9IjEwIiBmaWxsPSIjYzAzOTJiIiBvcGFjaXR5PSIwLjciLz4KICA8IS0tIERvam8gbmFtZSBwbGFxdWUgcmlnaHQgLS0+CiAgPHJlY3QgeD0iMjcyIiB5PSIzNyIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjMwIiByeD0iMSIgZmlsbD0iIzFhMTIxMCIvPgogIDxsaW5lIHgxPSIyNzQiIHkxPSI0NyIgeDI9IjMxNiIgeTI9IjQ3IiBzdHJva2U9InJnYmEoMjAxLDE2OCw3NiwwLjMpIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iMjc0IiB5MT0iNTUiIHgyPSIzMTYiIHkyPSI1NSIgc3Ryb2tlPSJyZ2JhKDIwMSwxNjgsNzYsMC4xNSkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gRmxvb3IgbWF0IGxpbmVzIC0tPgogIDxsaW5lIHgxPSI2MCIgeTE9IjE4MCIgeDI9IjM0MCIgeTI9IjE4MCIgc3Ryb2tlPSJyZ2JhKDIwMSwxNjgsNzYsMC4xKSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGxpbmUgeDE9IjYwIiB5MT0iMjAwIiB4Mj0iMzQwIiB5Mj0iMjAwIiBzdHJva2U9InJnYmEoMjAxLDE2OCw3NiwwLjA4KSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPCEtLSBUd28gcHJhY3RpdGlvbmVycyAtLT4KICA8IS0tIFBlcnNvbiAxIC0gbGVmdCAtLT4KICA8Y2lyY2xlIGN4PSIxNDUiIGN5PSIxNjIiIHI9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjI0LDIxNiwyMDQsMC42KSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGxpbmUgeDE9IjE0NSIgeTE9IjE3MiIgeDI9IjE0MyIgeTI9IjIwOCIgc3Ryb2tlPSJyZ2JhKDIyNCwyMTYsMjA0LDAuNikiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjE0MyIgeTE9IjE5MCIgeDI9IjEyNSIgeTI9IjIwMCIgc3Ryb2tlPSJyZ2JhKDIyNCwyMTYsMjA0LDAuNikiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjE0MyIgeTE9IjE5MCIgeDI9IjE2MiIgeTI9IjE4MyIgc3Ryb2tlPSJyZ2JhKDE5Miw1Nyw0MywwLjgpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIxNDMiIHkxPSIyMDgiIHgyPSIxMzAiIHkyPSIyMjIiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjYpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIxNDMiIHkxPSIyMDgiIHgyPSIxNTUiIHkyPSIyMjIiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjYpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gUGVyc29uIDIgLSByaWdodCAtLT4KICA8Y2lyY2xlIGN4PSIyNTUiIGN5PSIxNTgiIHI9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjI0LDIxNiwyMDQsMC42KSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGxpbmUgeDE9IjI1NSIgeTE9IjE2OCIgeDI9IjI1MyIgeTI9IjIwNCIgc3Ryb2tlPSJyZ2JhKDIyNCwyMTYsMjA0LDAuNikiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjI1MyIgeTE9IjE4NiIgeDI9IjIzNSIgeTI9IjE3OCIgc3Ryb2tlPSJyZ2JhKDE5Miw1Nyw0MywwLjgpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIyNTMiIHkxPSIxODYiIHgyPSIyNzIiIHkyPSIxOTUiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjYpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIyNTMiIHkxPSIyMDQiIHgyPSIyNDAiIHkyPSIyMTgiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjYpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIyNTMiIHkxPSIyMDQiIHgyPSIyNjUiIHkyPSIyMTgiIHN0cm9rZT0icmdiYSgyMjQsMjE2LDIwNCwwLjYpIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDx0ZXh0IHg9IjExMCIgeT0iMjY4IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9InJnYmEoMjAxLDE2OCw3NiwwLjYpIiBsZXR0ZXItc3BhY2luZz0iMiI+RE9KTyBCVVNISURPIOKAlCBUUkFJTklORyBIQUxMPC90ZXh0Pgo8L3N2Zz4=" alt="Dojo location" style="width:100%; height:100%; object-fit:cover;" onerror="this.parentElement.innerHTML='📍'"></div>
+        <div>
+          <div class="dojo-feature-title">Find Us</div>
+          <p class="dojo-feature-desc">12 Budo Street, City Center · Free parking · 2 min from Central Station</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="dojo-visual">
+      <div class="dojo-card-main">
+        <div class="dojo-card-header">
+          <div>
+            <div class="dojo-card-title">Weekly Schedule</div>
+            <div class="dojo-card-subtitle">Regular classes · Dojo Bushido</div>
+          </div>
+          <div class="dojo-badge">Live Now</div>
+        </div>
+        <div class="dojo-schedule">
+          <div class="schedule-row">
+            <span class="schedule-day">Monday / Wednesday</span>
+            <span class="schedule-time">18:00 – 19:30</span>
+            <span class="schedule-level level-beg">Beginner</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-day">Tuesday / Thursday</span>
+            <span class="schedule-time">19:00 – 20:30</span>
+            <span class="schedule-level level-int">Intermediate</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-day">Friday</span>
+            <span class="schedule-time">18:30 – 20:30</span>
+            <span class="schedule-level level-adv">Advanced</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-day">Saturday</span>
+            <span class="schedule-time">09:00 – 11:00</span>
+            <span class="schedule-level level-beg">Kids</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-day">Saturday</span>
+            <span class="schedule-time">11:30 – 13:00</span>
+            <span class="schedule-level level-int">Open Mat</span>
+          </div>
+        </div>
+        <div class="dojo-cta">
+          <span class="dojo-cta-text">Book your free trial class today</span>
+          <span class="dojo-cta-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MOVES SHOWCASE -->
+<section class="moves-section" id="moves">
+  <div class="moves-header">
+    <div>
+      <div class="section-label">Technique Library</div>
+      <h2 class="section-title">Karate Moves<br>Demonstrated</h2>
+      <p class="section-sub" style="margin-bottom:0">From foundational stances to advanced kicks — study the art.</p>
+    </div>
+    <div class="moves-filters">
+      <button class="moves-filter-btn active" onclick="filterMoves('all', this)">All</button>
+      <button class="moves-filter-btn" onclick="filterMoves('kick', this)">Kicks</button>
+      <button class="moves-filter-btn" onclick="filterMoves('punch', this)">Punches</button>
+      <button class="moves-filter-btn" onclick="filterMoves('block', this)">Blocks</button>
+      <button class="moves-filter-btn" onclick="filterMoves('kata', this)">Kata</button>
+    </div>
+  </div>
+
+  <div class="moves-grid" id="movesGrid">
+
+    <!-- Featured: Roundhouse Kick -->
+    <div class="move-card move-featured" data-category="kick">
+      <img class="move-card-img"
+        src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDM1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjM1MCIgZmlsbD0iIzBlMGMwYiIvPgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI4MDAiIGhlaWdodD0iMzUwIiBmaWxsPSJ1cmwoI21nKSIvPgogIDxkZWZzPgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJtZyIgY3g9IjYwJSIgY3k9IjUwJSIgcj0iNjAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzJhMGEwNiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwZTBjMGIiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDwhLS0ga2Fuamkgd2F0ZXJtYXJrIC0tPgogIDx0ZXh0IHg9IjY4MCIgeT0iMjgwIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJyZ2JhKDE5Miw1Nyw0MywwLjA3KSIgZm9udC13ZWlnaHQ9ImJvbGQiPui5tDwvdGV4dD4KICA8IS0tIEdyb3VuZCBsaW5lIC0tPgogIDxsaW5lIHgxPSI4MCIgeTE9IjMxMCIgeDI9IjUwMCIgeTI9IjMxMCIgc3Ryb2tlPSJyZ2JhKDE5Miw1Nyw0MywwLjMpIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDwhLS0gS2FyYXRla2EgYm9keSAtIHJvdW5kaG91c2Uga2ljayBwb3NlIC0tPgogIDwhLS0gU3RhbmRpbmcgbGVnIC0tPgogIDxsaW5lIHgxPSIyNjAiIHkxPSIzMTAiIHgyPSIyNjAiIHkyPSIyMjAiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIFRvcnNvIC0tPgogIDxsaW5lIHgxPSIyNjAiIHkxPSIyMjAiIHgyPSIyNTUiIHkyPSIxMzAiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEhlYWQgLS0+CiAgPGNpcmNsZSBjeD0iMjUyIiBjeT0iMTA4IiByPSIyMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjUiLz4KICA8IS0tIEtpY2tpbmcgbGVnIC0gZXh0ZW5kZWQgaGlnaCAtLT4KICA8bGluZSB4MT0iMjYwIiB5MT0iMjIwIiB4Mj0iMzEwIiB5Mj0iMTY1IiBzdHJva2U9IiNjMDM5MmIiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjMxMCIgeTE9IjE2NSIgeDI9IjQyMCIgeTI9IjEzMCIgc3Ryb2tlPSIjYzAzOTJiIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gRm9vdCAtLT4KICA8ZWxsaXBzZSBjeD0iNDMyIiBjeT0iMTI2IiByeD0iMTgiIHJ5PSIxMCIgZmlsbD0iI2MwMzkyYiIgdHJhbnNmb3JtPSJyb3RhdGUoLTIwIDQzMiAxMjYpIi8+CiAgPCEtLSBCYWNrIGFybSBndWFyZCAtLT4KICA8bGluZSB4MT0iMjU1IiB5MT0iMTQ1IiB4Mj0iMjA1IiB5Mj0iMTgwIiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjIwNSIgeTE9IjE4MCIgeDI9IjE5NSIgeTI9IjIxMCIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gRnJvbnQgYXJtIGV4dGVuZGVkIC0tPgogIDxsaW5lIHgxPSIyNTUiIHkxPSIxNDUiIHgyPSIzMjAiIHkyPSIxNTUiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEdpIGJlbHQgbGluZSAtLT4KICA8bGluZSB4MT0iMjQwIiB5MT0iMTkwIiB4Mj0iMjc1IiB5Mj0iMTg1IiBzdHJva2U9IiNjOWE4NGMiIHN0cm9rZS13aWR0aD0iMyIvPgogIDwhLS0gTW90aW9uIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIzNjAiIHkxPSIxMTAiIHgyPSI0NjAiIHkyPSI5NSIgc3Ryb2tlPSJyZ2JhKDE5Miw1Nyw0MywwLjQpIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWRhc2hhcnJheT0iNiw0Ii8+CiAgPGxpbmUgeDE9IjM0MCIgeTE9IjEzMCIgeDI9IjQ0MCIgeTI9IjExOCIgc3Ryb2tlPSJyZ2JhKDE5Miw1Nyw0MywwLjI1KSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSI0LDUiLz4KICA8IS0tIExhYmVsIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSIzMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMSIgZmlsbD0icmdiYSgyMDEsMTY4LDc2LDAuNikiIGxldHRlci1zcGFjaW5nPSIyIj5NQVdBU0hJIEdFUkk8L3RleHQ+Cjwvc3ZnPg=="
+        alt="Roundhouse kick mawashi geri demonstration">
+      <div class="move-card-body">
+        <div class="move-type">Kick</div>
+        <div class="move-name">Roundhouse Kick</div>
+        <div class="move-name-jp">Mawashi Geri — 回し蹴り</div>
+        <p class="move-desc">One of karate's most powerful and versatile strikes. The hip rotates fully as the leg sweeps in a circular arc, driving the ball of the foot or instep into the target.</p>
+        <div class="move-meta">
+          <span class="move-tag tag-difficulty-int">Intermediate</span>
+          <span class="move-tag tag-category">Lower Body</span>
+          <span class="move-tag tag-category">Kumite Essential</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Front Kick -->
+    <div class="move-card" data-category="kick">
+      <img class="move-card-img"
+        src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMyMCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iZmciIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjU1JSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMGEwOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2ZnKSIvPgogIDx0ZXh0IHg9IjMwMCIgeT0iMjYwIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iMTIwIiBmaWxsPSJyZ2JhKDE5Miw1Nyw0MywwLjA3KSIgZm9udC13ZWlnaHQ9ImJvbGQiPui5tDwvdGV4dD4KICA8bGluZSB4MT0iNjAiIHkxPSIyOTAiIHgyPSIzNDAiIHkyPSIyOTAiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC4yNSkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gU3RhbmRpbmcgbGVnIC0tPgogIDxsaW5lIHgxPSIxNzAiIHkxPSIyOTAiIHgyPSIxNzUiIHkyPSIyMTAiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIFRvcnNvIC0tPgogIDxsaW5lIHgxPSIxNzUiIHkxPSIyMTAiIHgyPSIxNzIiIHkyPSIxMjAiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEhlYWQgLS0+CiAgPGNpcmNsZSBjeD0iMTcwIiBjeT0iMTAwIiByPSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjUiLz4KICA8IS0tIEtuZWUgcmFpc2VkIC0tPgogIDxsaW5lIHgxPSIxNzUiIHkxPSIyMTAiIHgyPSIyMTUiIHkyPSIxNjUiIHN0cm9rZT0iI2MwMzkyYiIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEtpY2sgZXh0ZW5kZWQgZm9yd2FyZCAtLT4KICA8bGluZSB4MT0iMjE1IiB5MT0iMTY1IiB4Mj0iMzEwIiB5Mj0iMTYwIiBzdHJva2U9IiNjMDM5MmIiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSBGb290IC0tPgogIDxlbGxpcHNlIGN4PSIzMjIiIGN5PSIxNTgiIHJ4PSIxNiIgcnk9IjkiIGZpbGw9IiNjMDM5MmIiLz4KICA8IS0tIEFybXMgaW4gZ3VhcmQgLS0+CiAgPGxpbmUgeDE9IjE3MiIgeTE9IjEzOCIgeDI9IjEzNSIgeTI9IjE2NSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIxMzUiIHkxPSIxNjUiIHgyPSIxMjgiIHkyPSIxOTAiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iMTcyIiB5MT0iMTM4IiB4Mj0iMjEwIiB5Mj0iMTUwIiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjIxMCIgeTE9IjE1MCIgeDI9IjIxNSIgeTI9IjE3NSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gQmVsdCAtLT4KICA8bGluZSB4MT0iMTU4IiB5MT0iMTc4IiB4Mj0iMTkwIiB5Mj0iMTc1IiBzdHJva2U9IiNjOWE4NGMiIHN0cm9rZS13aWR0aD0iMyIvPgogIDwhLS0gTW90aW9uIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIyNTUiIHkxPSIxNDUiIHgyPSIzNDAiIHkyPSIxNDAiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC4zNSkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSI1LDQiLz4KICA8dGV4dCB4PSIzMCIgeT0iMzEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9InJnYmEoMjAxLDE2OCw3NiwwLjYpIiBsZXR0ZXItc3BhY2luZz0iMiI+TUFFIEdFUkk8L3RleHQ+Cjwvc3ZnPg=="
+        alt="Front kick mae geri demonstration">
+      <div class="move-card-body">
+        <div class="move-type">Kick</div>
+        <div class="move-name">Front Kick</div>
+        <div class="move-name-jp">Mae Geri — 前蹴り</div>
+        <p class="move-desc">The first kick taught to beginners. Drive the knee up, then snap the foot forward, striking with the ball of the foot. Fast and direct.</p>
+        <div class="move-meta">
+          <span class="move-tag tag-difficulty-beg">Beginner</span>
+          <span class="move-tag tag-category">Lower Body</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reverse Punch -->
+    <div class="move-card" data-category="punch">
+      <img class="move-card-img"
+        src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMyMCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iZ3oiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjU1JSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMGEwOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2d6KSIvPgogIDx0ZXh0IHg9IjI5MCIgeT0iMjYwIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iMTIwIiBmaWxsPSJyZ2JhKDE5Miw1Nyw0MywwLjA3KSIgZm9udC13ZWlnaHQ9ImJvbGQiPueqgTwvdGV4dD4KICA8bGluZSB4MT0iNjAiIHkxPSIyOTAiIHgyPSIzNDAiIHkyPSIyOTAiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC4yNSkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gRnJvbnQgbGVnIC0gemVua3V0c3UgZGFjaGkgc3RhbmNlIC0tPgogIDxsaW5lIHgxPSIyMDAiIHkxPSIyOTAiIHgyPSIxOTUiIHkyPSIyMTUiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEJhY2sgbGVnIC0tPgogIDxsaW5lIHgxPSIxNDAiIHkxPSIyOTAiIHgyPSIxNzUiIHkyPSIyMTUiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIFRvcnNvIGxlYW5pbmcgZm9yd2FyZCAtLT4KICA8bGluZSB4MT0iMTc1IiB5MT0iMjE1IiB4Mj0iMTg1IiB5Mj0iMTI4IiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSBIZWFkIC0tPgogIDxjaXJjbGUgY3g9IjE4NyIgY3k9IjEwOCIgcj0iMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI1Ii8+CiAgPCEtLSBQdW5jaGluZyBhcm0gZnVsbHkgZXh0ZW5kZWQgLS0+CiAgPGxpbmUgeDE9IjE4NSIgeTE9IjE0OCIgeDI9IjMxMCIgeTI9IjEzOCIgc3Ryb2tlPSIjYzAzOTJiIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gRmlzdCAtLT4KICA8cmVjdCB4PSIzMTAiIHk9IjEzMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjE2IiByeD0iNCIgZmlsbD0iI2MwMzkyYiIvPgogIDwhLS0gUHVsbGluZyBiYWNrIGFybSAtLT4KICA8bGluZSB4MT0iMTg1IiB5MT0iMTQ4IiB4Mj0iMTI4IiB5Mj0iMTU4IiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjEyOCIgeTE9IjE1OCIgeDI9IjExNSIgeTI9IjE3NSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gQmVsdCAtLT4KICA8bGluZSB4MT0iMTYzIiB5MT0iMTg1IiB4Mj0iMjAwIiB5Mj0iMTgyIiBzdHJva2U9IiNjOWE4NGMiIHN0cm9rZS13aWR0aD0iMyIvPgogIDwhLS0gSW1wYWN0IGxpbmVzIC0tPgogIDxsaW5lIHgxPSIzMTYiIHkxPSIxMjUiIHgyPSIzNTUiIHkyPSIxMTAiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC41KSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjQsMyIvPgogIDxsaW5lIHgxPSIzMTYiIHkxPSIxMzgiIHgyPSIzNjAiIHkyPSIxMzgiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC41KSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjQsMyIvPgogIDxsaW5lIHgxPSIzMTYiIHkxPSIxNTAiIHgyPSIzNTUiIHkyPSIxNjIiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC41KSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjQsMyIvPgogIDx0ZXh0IHg9IjMwIiB5PSIzMTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0icmdiYSgyMDEsMTY4LDc2LDAuNikiIGxldHRlci1zcGFjaW5nPSIyIj5HWUFLVSBaVUtJPC90ZXh0Pgo8L3N2Zz4="
+        alt="Reverse punch gyaku zuki karate">
+      <div class="move-card-body">
+        <div class="move-type">Punch</div>
+        <div class="move-name">Reverse Punch</div>
+        <div class="move-name-jp">Gyaku Zuki — 逆突き</div>
+        <p class="move-desc">The backbone of karate striking. Delivered from a forward stance, the rear hand fires forward with full hip rotation for maximum power generation.</p>
+        <div class="move-meta">
+          <span class="move-tag tag-difficulty-beg">Beginner</span>
+          <span class="move-tag tag-category">Upper Body</span>
+          <span class="move-tag tag-category">Kumite Essential</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kata Bassai Dai -->
+    <div class="move-card" data-category="kata">
+      <img class="move-card-img"
+        src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMyMCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0ia3QiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjU1JSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBhMGExYSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2t0KSIvPgogIDx0ZXh0IHg9IjI4MCIgeT0iMjYwIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iMTIwIiBmaWxsPSJyZ2JhKDUyLDEwMCwxODAsMC4wOCkiIGZvbnQtd2VpZ2h0PSJib2xkIj7lnos8L3RleHQ+CiAgPGxpbmUgeDE9IjYwIiB5MT0iMjkwIiB4Mj0iMzQwIiB5Mj0iMjkwIiBzdHJva2U9InJnYmEoMTAwLDEyMCwyMDAsMC4yNSkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gS2F0YSBzdGFuY2UgLSBzaHV0byB1a2UgcG9zaXRpb24gLS0+CiAgPCEtLSBCYWNrIGxlZyBiZW50IC0tPgogIDxsaW5lIHgxPSIxNDUiIHkxPSIyOTAiIHgyPSIxODAiIHkyPSIyMjAiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEZyb250IGxlZyBmb3J3YXJkIC0tPgogIDxsaW5lIHgxPSIyMTUiIHkxPSIyOTAiIHgyPSIxOTAiIHkyPSIyMjAiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIFRvcnNvIHVwcmlnaHQgLS0+CiAgPGxpbmUgeDE9IjE5MCIgeTE9IjIyMCIgeDI9IjE5MCIgeTI9IjEyOCIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gSGVhZCAtLT4KICA8Y2lyY2xlIGN4PSIxOTAiIGN5PSIxMDgiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iNSIvPgogIDwhLS0gTGVhZCBhcm0gLSBzaHV0byBleHRlbmRlZCAtLT4KICA8bGluZSB4MT0iMTkwIiB5MT0iMTQ4IiB4Mj0iMjkwIiB5Mj0iMTM4IiBzdHJva2U9IiNjMDM5MmIiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSBPcGVuIGtuaWZlIGhhbmQgLS0+CiAgPGxpbmUgeDE9IjI5MCIgeTE9IjEzMCIgeDI9IjMwMyIgeTI9IjE0OCIgc3Ryb2tlPSIjYzAzOTJiIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gQmFjayBhcm0gY2hhbWJlciAtLT4KICA8bGluZSB4MT0iMTkwIiB5MT0iMTQ4IiB4Mj0iMTM1IiB5Mj0iMTM1IiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjEzNSIgeTE9IjEzNSIgeDI9IjEyMiIgeTI9IjExOCIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gQmVsdCBnb2xkIC0tPgogIDxsaW5lIHgxPSIxNzIiIHkxPSIxODUiIHgyPSIyMTAiIHkyPSIxODIiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSI0Ii8+CiAgPCEtLSBLYXRhIGNpcmNsZSBkZWNvcmF0aW9uIC0tPgogIDxjaXJjbGUgY3g9IjE5MCIgY3k9IjE5MCIgcj0iOTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMDEsMTY4LDc2LDAuMDYpIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8Y2lyY2xlIGN4PSIxOTAiIGN5PSIxOTAiIHI9IjExMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDIwMSwxNjgsNzYsMC4wNCkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjMwIiB5PSIzMTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0icmdiYSgyMDEsMTY4LDc2LDAuNikiIGxldHRlci1zcGFjaW5nPSIyIj5CQVNTQUkgREFJPC90ZXh0Pgo8L3N2Zz4="
+        alt="Karate kata heian shodan stance"
+        onerror="this.src='https://images.unsplash.com/photo-1627399270231-7d36245355a9?w=600&q=80'">
+      <div class="move-card-body">
+        <div class="move-type">Kata</div>
+        <div class="move-name">Bassai Dai</div>
+        <div class="move-name-jp">披塞大 — "Penetrating a Fortress"</div>
+        <p class="move-desc">One of the most important Shotokan kata. 42 movements expressing powerful intent, directional changes, and deep stances with explosive kime.</p>
+        <div class="move-meta">
+          <span class="move-tag tag-difficulty-int">Intermediate</span>
+          <span class="move-tag tag-category">Kata</span>
+          <span class="move-tag tag-category">42 Moves</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Age-Uke Block -->
+    <div class="move-card" data-category="block">
+      <img class="move-card-img"
+        src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMyMCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iYXUiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjU1JSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMGEwOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2F1KSIvPgogIDx0ZXh0IHg9IjI4MCIgeT0iMjYwIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iMTIwIiBmaWxsPSJyZ2JhKDE5Miw1Nyw0MywwLjA3KSIgZm9udC13ZWlnaHQ9ImJvbGQiPuWPlzwvdGV4dD4KICA8bGluZSB4MT0iNjAiIHkxPSIyOTAiIHgyPSIzNDAiIHkyPSIyOTAiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC4yNSkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gTGVncyBpbiBnZWRhbiBzdGFuY2UgLS0+CiAgPGxpbmUgeDE9IjE1NSIgeTE9IjI5MCIgeDI9IjE3OCIgeTI9IjIxNSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIyMTAiIHkxPSIyOTAiIHgyPSIxODUiIHkyPSIyMTUiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIFRvcnNvIC0tPgogIDxsaW5lIHgxPSIxODUiIHkxPSIyMTUiIHgyPSIxODUiIHkyPSIxMjgiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEhlYWQgLS0+CiAgPGNpcmNsZSBjeD0iMTg1IiBjeT0iMTA4IiByPSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjUiLz4KICA8IS0tIFJpc2luZyBibG9jayBhcm0gLSBzd2VlcGluZyB1cHdhcmQgLS0+CiAgPGxpbmUgeDE9IjE4NSIgeTE9IjE0OCIgeDI9IjIyOCIgeTI9Ijg4IiBzdHJva2U9IiNjMDM5MmIiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSBGb3JlYXJtIHJvdGF0ZWQgYWNyb3NzIGhlYWQgLS0+CiAgPGxpbmUgeDE9IjIyOCIgeTE9Ijg4IiB4Mj0iMTY1IiB5Mj0iNzgiIHN0cm9rZT0iI2MwMzkyYiIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIENvdW50ZXIgcHVuY2ggLS0+CiAgPGxpbmUgeDE9IjE4NSIgeTE9IjE1OCIgeDI9IjI1NSIgeTI9IjE2OCIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxyZWN0IHg9IjI1NSIgeT0iMTYxIiB3aWR0aD0iMTgiIGhlaWdodD0iMTQiIHJ4PSIzIiBmaWxsPSIjZTBkOGNjIi8+CiAgPCEtLSBCZWx0IC0tPgogIDxsaW5lIHgxPSIxNjgiIHkxPSIxODUiIHgyPSIyMDQiIHkyPSIxODIiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPCEtLSBCbG9jayBkZWZsZWN0IGFycm93IC0tPgogIDxsaW5lIHgxPSIyMDAiIHkxPSI2MCIgeDI9IjIzMCIgeTI9Ijc4IiBzdHJva2U9InJnYmEoMTkyLDU3LDQzLDAuNCkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSI0LDMiLz4KICA8dGV4dCB4PSIzMCIgeT0iMzEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9InJnYmEoMjAxLDE2OCw3NiwwLjYpIiBsZXR0ZXItc3BhY2luZz0iMiI+QUdFIFVLRTwvdGV4dD4KPC9zdmc+"
+        alt="Age uke rising block karate"
+        onerror="this.src='https://images.unsplash.com/photo-1566933293069-b55c7f326dd4?w=600&q=80'">
+      <div class="move-card-body">
+        <div class="move-type">Block</div>
+        <div class="move-name">Rising Block</div>
+        <div class="move-name-jp">Age Uke — 上げ受け</div>
+        <p class="move-desc">Deflects downward attacks to the head. The forearm sweeps upward in a circular arc, protecting the face while loading a counter-strike.</p>
+        <div class="move-meta">
+          <span class="move-tag tag-difficulty-beg">Beginner</span>
+          <span class="move-tag tag-category">Defense</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side Kick -->
+    <div class="move-card" data-category="kick">
+      <img class="move-card-img"
+        src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMyMCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0ieWciIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjU1JSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMGEwOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI3lnKSIvPgogIDx0ZXh0IHg9IjI5MCIgeT0iMjYwIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iMTIwIiBmaWxsPSJyZ2JhKDE5Miw1Nyw0MywwLjA3KSIgZm9udC13ZWlnaHQ9ImJvbGQiPui5tDwvdGV4dD4KICA8bGluZSB4MT0iNjAiIHkxPSIyOTAiIHgyPSIzNDAiIHkyPSIyOTAiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC4yNSkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gU3RhbmRpbmcgbGVnIHNsaWdodGx5IGJlbnQgLS0+CiAgPGxpbmUgeDE9IjE3MCIgeTE9IjI5MCIgeDI9IjE3MiIgeTI9IjIxMCIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gVG9yc28gdXByaWdodCAtLT4KICA8bGluZSB4MT0iMTcyIiB5MT0iMjEwIiB4Mj0iMTY4IiB5Mj0iMTIwIiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSBIZWFkIC0tPgogIDxjaXJjbGUgY3g9IjE2NSIgY3k9IjEwMCIgcj0iMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI1Ii8+CiAgPCEtLSBTaWRlIGtpY2sgLSBoaXAgY2hhbWJlcnMgdGhlbiB0aHJ1c3RzIC0tPgogIDxsaW5lIHgxPSIxNzIiIHkxPSIyMTAiIHgyPSIyMTUiIHkyPSIxODUiIHN0cm9rZT0iI2MwMzkyYiIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iMjE1IiB5MT0iMTg1IiB4Mj0iMzE1IiB5Mj0iMTk1IiBzdHJva2U9IiNjMDM5MmIiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSBIZWVsIHRocnVzdCAtLT4KICA8ZWxsaXBzZSBjeD0iMzIyIiBjeT0iMTk0IiByeD0iMTUiIHJ5PSI5IiBmaWxsPSIjYzAzOTJiIiB0cmFuc2Zvcm09InJvdGF0ZSg1IDMyMiAxOTQpIi8+CiAgPCEtLSBBcm1zIGluIGd1YXJkIC0tPgogIDxsaW5lIHgxPSIxNjgiIHkxPSIxNDAiIHgyPSIxMjgiIHkyPSIxNTgiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iMTI4IiB5MT0iMTU4IiB4Mj0iMTIwIiB5Mj0iMTgwIiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjE2OCIgeTE9IjE0MCIgeDI9IjIwNSIgeTI9IjE0NSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gQmVsdCAtLT4KICA8bGluZSB4MT0iMTUyIiB5MT0iMTc4IiB4Mj0iMTg2IiB5Mj0iMTc1IiBzdHJva2U9IiNjOWE4NGMiIHN0cm9rZS13aWR0aD0iMyIvPgogIDwhLS0gTW90aW9uIC0tPgogIDxsaW5lIHgxPSIyNTgiIHkxPSIxODIiIHgyPSIzNDAiIHkyPSIxODAiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC4zNSkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSI1LDQiLz4KICA8dGV4dCB4PSIzMCIgeT0iMzEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9InJnYmEoMjAxLDE2OCw3NiwwLjYpIiBsZXR0ZXItc3BhY2luZz0iMiI+WU9LTyBHRVJJPC90ZXh0Pgo8L3N2Zz4="
+        alt="Yoko geri side kick karate"
+        onerror="this.src='https://images.unsplash.com/photo-1555597673-b21d5c935865?w=600&q=80'">
+      <div class="move-card-body">
+        <div class="move-type">Kick</div>
+        <div class="move-name">Side Kick</div>
+        <div class="move-name-jp">Yoko Geri — 横蹴り</div>
+        <p class="move-desc">Delivers force laterally with the heel or blade of the foot. Excellent range and penetrating power when executed with correct hip alignment.</p>
+        <div class="move-meta">
+          <span class="move-tag tag-difficulty-int">Intermediate</span>
+          <span class="move-tag tag-category">Lower Body</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Knife Hand Strike -->
+    <div class="move-card" data-category="punch">
+      <img class="move-card-img"
+        src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMyMCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0ic3UiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjU1JSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMGEwOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI3N1KSIvPgogIDx0ZXh0IHg9IjI4NSIgeT0iMjU1IiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iMTIwIiBmaWxsPSJyZ2JhKDE5Miw1Nyw0MywwLjA3KSIgZm9udC13ZWlnaHQ9ImJvbGQiPuWIgDwvdGV4dD4KICA8bGluZSB4MT0iNjAiIHkxPSIyOTAiIHgyPSIzNDAiIHkyPSIyOTAiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC4yNSkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gTGVncyBrb2t1dHN1IGRhY2hpIChiYWNrIHN0YW5jZSkgLS0+CiAgPGxpbmUgeDE9IjE0NSIgeTE9IjI5MCIgeDI9IjE3MCIgeTI9IjIxNSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIyMTAiIHkxPSIyOTAiIHgyPSIxODUiIHkyPSIyMTUiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIFRvcnNvIC0tPgogIDxsaW5lIHgxPSIxODUiIHkxPSIyMTUiIHgyPSIxOTAiIHkyPSIxMjUiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEhlYWQgLS0+CiAgPGNpcmNsZSBjeD0iMTkyIiBjeT0iMTA1IiByPSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjUiLz4KICA8IS0tIFNodXRvIHN0cmlrZSBhcm0gLSBvcGVuIGhhbmQgYmxhZGUgLS0+CiAgPGxpbmUgeDE9IjE5MCIgeTE9IjE0OCIgeDI9IjI5NSIgeTI9IjEyOCIgc3Ryb2tlPSIjYzAzOTJiIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gT3BlbiBoYW5kIC8gYmxhZGUgZWRnZSAtLT4KICA8bGluZSB4MT0iMjk1IiB5MT0iMTE4IiB4Mj0iMzA4IiB5Mj0iMTQwIiBzdHJva2U9IiNjMDM5MmIiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjMwOCIgeTE9IjExOCIgeDI9IjI5NSIgeTI9IjE0MCIgc3Ryb2tlPSIjYzAzOTJiIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC41Ii8+CiAgPCEtLSBDaGFtYmVyIGFybSBwdWxsZWQgYmFjayAtLT4KICA8bGluZSB4MT0iMTkwIiB5MT0iMTQ4IiB4Mj0iMTMwIiB5Mj0iMTQwIiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjEzMCIgeTE9IjE0MCIgeDI9IjExOCIgeTI9IjE2NSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gQmVsdCAtLT4KICA8bGluZSB4MT0iMTcwIiB5MT0iMTg1IiB4Mj0iMjA4IiB5Mj0iMTgyIiBzdHJva2U9IiNjOWE4NGMiIHN0cm9rZS13aWR0aD0iMyIvPgogIDwhLS0gSW1wYWN0IHNwYXJrcyAtLT4KICA8Y2lyY2xlIGN4PSIzMDgiIGN5PSIxMjgiIHI9IjEyIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMTkyLDU3LDQzLDAuNCkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSIzLDIiLz4KICA8dGV4dCB4PSIzMCIgeT0iMzEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9InJnYmEoMjAxLDE2OCw3NiwwLjYpIiBsZXR0ZXItc3BhY2luZz0iMiI+U0hVVE8gVUNISTwvdGV4dD4KPC9zdmc+"
+        alt="Shuto uchi knife hand strike karate">
+      <div class="move-card-body">
+        <div class="move-type">Strike</div>
+        <div class="move-name">Knife Hand Strike</div>
+        <div class="move-name-jp">Shuto Uchi — 手刀打ち</div>
+        <p class="move-desc">Strike with the outer edge of the open hand targeting the neck, temple, or collarbone. Precision and snap are more important than raw power.</p>
+        <div class="move-meta">
+          <span class="move-tag tag-difficulty-int">Intermediate</span>
+          <span class="move-tag tag-category">Upper Body</span>
+          <span class="move-tag tag-category">Kata Staple</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gedan Barai -->
+    <div class="move-card" data-category="block">
+      <img class="move-card-img"
+        src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMyMCIgZmlsbD0iIzBlMGMwYiIvPgogIDxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iZ2IiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjU1JSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMGEwOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBlMGMwYiIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2diKSIvPgogIDx0ZXh0IHg9IjI4NSIgeT0iMjYwIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iMTIwIiBmaWxsPSJyZ2JhKDE5Miw1Nyw0MywwLjA3KSIgZm9udC13ZWlnaHQ9ImJvbGQiPuaJlTwvdGV4dD4KICA8bGluZSB4MT0iNjAiIHkxPSIyOTAiIHgyPSIzNDAiIHkyPSIyOTAiIHN0cm9rZT0icmdiYSgxOTIsNTcsNDMsMC4yNSkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDwhLS0gTGVncyBpbiBmb3J3YXJkIHN0YW5jZSAtLT4KICA8bGluZSB4MT0iMTU1IiB5MT0iMjkwIiB4Mj0iMTc4IiB5Mj0iMjE1IiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjIxNSIgeTE9IjI5MCIgeDI9IjE5MCIgeTI9IjIxNSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gVG9yc28gLS0+CiAgPGxpbmUgeDE9IjE5MCIgeTE9IjIxNSIgeDI9IjE5MCIgeTI9IjEyNSIgc3Ryb2tlPSIjZTBkOGNjIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gSGVhZCAtLT4KICA8Y2lyY2xlIGN4PSIxOTAiIGN5PSIxMDUiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iNSIvPgogIDwhLS0gR2VkYW4gYmFyYWkgLSBzd2VlcGluZyBkb3dud2FyZCBibG9jayBhY3Jvc3MgYm9keSAtLT4KICA8bGluZSB4MT0iMTkwIiB5MT0iMTQ4IiB4Mj0iMTY1IiB5Mj0iMTE1IiBzdHJva2U9IiNjMDM5MmIiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjE2NSIgeTE9IjExNSIgeDI9IjIzOCIgeTI9IjIxMCIgc3Ryb2tlPSIjYzAzOTJiIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gT3RoZXIgYXJtIGNoYW1iZXIgYXQgaGlwIC0tPgogIDxsaW5lIHgxPSIxOTAiIHkxPSIxNDgiIHgyPSIyMzgiIHkyPSIxNTUiIHN0cm9rZT0iI2UwZDhjYyIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iMjM4IiB5MT0iMTU1IiB4Mj0iMjQ4IiB5Mj0iMTcyIiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSBCZWx0IC0tPgogIDxsaW5lIHgxPSIxNzIiIHkxPSIxODUiIHgyPSIyMDgiIHkyPSIxODIiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPCEtLSBTd2VlcCBhcmMgLS0+CiAgPHBhdGggZD0iTTE2NSAxMTUgUTIwMCAxNjAgMjM4IDIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDE5Miw1Nyw0MywwLjIpIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDx0ZXh0IHg9IjMwIiB5PSIzMTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0icmdiYSgyMDEsMTY4LDc2LDAuNikiIGxldHRlci1zcGFjaW5nPSIyIj5HRURBTiBCQVJBSTwvdGV4dD4KPC9zdmc+"
+        alt="Gedan barai downward block karate">
+      <div class="move-card-body">
+        <div class="move-type">Block</div>
+        <div class="move-name">Downward Block</div>
+        <div class="move-name-jp">Gedan Barai — 下段払い</div>
+        <p class="move-desc">Sweeps low attacks — kicks or leg strikes — away from the body. The first block taught in virtually every karate system. Foundation of all kata.</p>
+        <div class="move-meta">
+          <span class="move-tag tag-difficulty-beg">Beginner</span>
+          <span class="move-tag tag-category">Defense</span>
+          <span class="move-tag tag-category">Kata Staple</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+function filterMoves(category, btn) {
+  document.querySelectorAll('.moves-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.move-card').forEach(card => {
+    if (category === 'all' || card.dataset.category === category) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="section-label">From Our Community</div>
+  <h2 class="section-title">Students Speak</h2>
+
+  <div class="testimonials-grid">
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"The Heian Series course is incredibly well structured. Sensei's breakdown of each kata is the clearest I've ever seen — better than anything I've found in person."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">MR</div>
+        <div>
+          <div class="author-name">Marcus R.</div>
+          <div class="author-belt">Brown Belt · Germany</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"The Sensei Pro Gi is the best uniform I've owned. Six months of intensive training and it looks brand new. Worth every cent."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">AT</div>
+        <div>
+          <div class="author-name">Aiko T.</div>
+          <div class="author-belt">Black Belt, 2nd Dan · Japan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"My daughter started at the kids' dojo classes two years ago. She just passed her green belt and her discipline and confidence have transformed completely."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">CL</div>
+        <div>
+          <div class="author-name">Camille L.</div>
+          <div class="author-belt">Parent · Dojo Member</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHECKOUT / PAYMENT SECTION -->
+<section id="checkout" style="background:#12100F; padding:6rem 4rem;">
+  <div style="max-width:1100px; margin:0 auto;">
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start;">
+
+      <!-- LEFT: Order summary -->
+      <div>
+        <div class="section-label">Secure Checkout</div>
+        <h2 class="section-title" style="margin-bottom:0.6rem;">Complete<br>Your Order</h2>
+        <p style="font-size:0.9rem; color:rgba(253,250,244,0.45); font-weight:300; line-height:1.7; margin-bottom:2rem;">
+          All transactions are encrypted and secured. We accept every major payment method worldwide.
+        </p>
+
+        <!-- Accepted Cards Display -->
+        <div style="margin-bottom:2rem;">
+          <div style="font-size:0.7rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:rgba(253,250,244,0.35); margin-bottom:1rem;">Accepted Payment Methods</div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.6rem;">
+
+            <!-- Visa -->
+            <div class="pay-badge" title="Visa">
+              <svg viewBox="0 0 60 38" width="60" height="38" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="38" rx="5" fill="#1A1F71"/>
+                <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="14" font-weight="700" font-style="italic" letter-spacing="1">VISA</text>
+              </svg>
+            </div>
+
+            <!-- Mastercard -->
+            <div class="pay-badge" title="Mastercard">
+              <svg viewBox="0 0 60 38" width="60" height="38" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="38" rx="5" fill="#252525"/>
+                <circle cx="23" cy="19" r="11" fill="#EB001B"/>
+                <circle cx="37" cy="19" r="11" fill="#F79E1B"/>
+                <path d="M30 10.5a11 11 0 0 1 0 17A11 11 0 0 1 30 10.5z" fill="#FF5F00"/>
+              </svg>
+            </div>
+
+            <!-- Amex -->
+            <div class="pay-badge" title="American Express">
+              <svg viewBox="0 0 60 38" width="60" height="38" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="38" rx="5" fill="#007BC1"/>
+                <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="7.5" font-weight="700" letter-spacing="0.5">AMERICAN</text>
+                <text x="50%" y="72%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="7.5" font-weight="700" letter-spacing="0.5">EXPRESS</text>
+              </svg>
+            </div>
+
+            <!-- Discover -->
+            <div class="pay-badge" title="Discover">
+              <svg viewBox="0 0 60 38" width="60" height="38" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="38" rx="5" fill="#231F20"/>
+                <circle cx="40" cy="19" r="13" fill="#F76F20"/>
+                <text x="13" y="55%" dominant-baseline="middle" text-anchor="start" fill="white" font-family="Arial" font-size="7" font-weight="700">DISCOVER</text>
+              </svg>
+            </div>
+
+            <!-- UnionPay -->
+            <div class="pay-badge" title="UnionPay">
+              <svg viewBox="0 0 60 38" width="60" height="38" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="38" rx="5" fill="#D4001A"/>
+                <rect x="20" y="0" width="40" height="38" rx="5" fill="#003087"/>
+                <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="7" font-weight="700">UnionPay</text>
+              </svg>
+            </div>
+
+            <!-- JCB -->
+            <div class="pay-badge" title="JCB">
+              <svg viewBox="0 0 60 38" width="60" height="38" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="38" rx="5" fill="#fff"/>
+                <rect x="6" y="6" width="16" height="26" rx="8" fill="#0E4C96"/>
+                <rect x="22" y="6" width="16" height="26" rx="8" fill="#E31837"/>
+                <rect x="38" y="6" width="16" height="26" rx="8" fill="#007B40"/>
+                <text x="14" y="56%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="7" font-weight="700">J</text>
+                <text x="30" y="56%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="7" font-weight="700">C</text>
+                <text x="46" y="56%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="7" font-weight="700">B</text>
+              </svg>
+            </div>
+
+            <!-- PayPal -->
+            <div class="pay-badge" title="PayPal">
+              <svg viewBox="0 0 60 38" width="60" height="38" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="38" rx="5" fill="#F5F5F5"/>
+                <text x="50%" y="42%" dominant-baseline="middle" text-anchor="middle" fill="#003087" font-family="Arial" font-size="8" font-weight="800">Pay</text>
+                <text x="50%" y="68%" dominant-baseline="middle" text-anchor="middle" fill="#009CDE" font-family="Arial" font-size="8" font-weight="800">Pal</text>
+              </svg>
+            </div>
+
+            <!-- Apple Pay -->
+            <div class="pay-badge" title="Apple Pay">
+              <svg viewBox="0 0 60 38" width="60" height="38" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="38" rx="5" fill="#1C1C1E"/>
+                <text x="50%" y="40%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="9">🍎</text>
+                <text x="50%" y="72%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="7" font-weight="600">Pay</text>
+              </svg>
+            </div>
+
+            <!-- Google Pay -->
+            <div class="pay-badge" title="Google Pay">
+              <svg viewBox="0 0 60 38" width="60" height="38" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="38" rx="5" fill="#F5F5F5"/>
+                <text x="7" y="60%" dominant-baseline="middle" text-anchor="start" fill="#4285F4" font-family="Arial" font-size="9" font-weight="700">G</text>
+                <text x="17" y="60%" dominant-baseline="middle" text-anchor="start" fill="#333" font-family="Arial" font-size="8" font-weight="500">Pay</text>
+              </svg>
+            </div>
+
+            <!-- Diners Club -->
+            <div class="pay-badge" title="Diners Club">
+              <svg viewBox="0 0 60 38" width="60" height="38" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="38" rx="5" fill="#F5F5F5"/>
+                <circle cx="24" cy="19" r="12" fill="none" stroke="#004A97" stroke-width="2"/>
+                <circle cx="36" cy="19" r="12" fill="none" stroke="#004A97" stroke-width="2"/>
+                <text x="50%" y="88%" dominant-baseline="middle" text-anchor="middle" fill="#004A97" font-family="Arial" font-size="5.5" font-weight="600">DINERS CLUB</text>
+              </svg>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Order summary box -->
+        <div style="background:rgba(253,250,244,0.04); border:1px solid rgba(253,250,244,0.08); border-radius:4px; padding:1.5rem; margin-bottom:1.5rem;">
+          <div style="font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(253,250,244,0.35); margin-bottom:1rem;">Order Summary</div>
+          <div style="display:flex; justify-content:space-between; padding:0.55rem 0; border-bottom:1px solid rgba(253,250,244,0.06); font-size:0.88rem;">
+            <span style="color:rgba(253,250,244,0.7);">Sensei Pro Gi (White, XL)</span>
+            <span>$129.00</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:0.55rem 0; border-bottom:1px solid rgba(253,250,244,0.06); font-size:0.88rem;">
+            <span style="color:rgba(253,250,244,0.7);">Kumite Sparring Course</span>
+            <span>$89.00</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:0.55rem 0; border-bottom:1px solid rgba(253,250,244,0.06); font-size:0.88rem;">
+            <span style="color:rgba(253,250,244,0.7);">Impact Guard Gloves</span>
+            <span>$44.00</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:0.55rem 0; font-size:0.85rem; color:rgba(253,250,244,0.4);">
+            <span>Shipping</span><span style="color:#52be80;">Free</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:0.8rem 0 0; margin-top:0.4rem; border-top:1px solid rgba(253,250,244,0.12); font-size:1rem; font-weight:600;">
+            <span>Total</span>
+            <span style="color:var(--gold); font-family:var(--font-display); font-size:1.3rem;">$262.00</span>
+          </div>
+        </div>
+
+        <!-- Security badges -->
+        <div style="display:flex; gap:1.2rem; flex-wrap:wrap;">
+          <div style="display:flex; align-items:center; gap:0.4rem; font-size:0.75rem; color:rgba(253,250,244,0.35);">
+            <span style="font-size:0.95rem;line-height:1">🔐</span> SSL Encrypted
+          </div>
+          <div style="display:flex; align-items:center; gap:0.4rem; font-size:0.75rem; color:rgba(253,250,244,0.35);">
+            <span style="font-size:0.95rem;line-height:1">🛡</span> PCI DSS Compliant
+          </div>
+          <div style="display:flex; align-items:center; gap:0.4rem; font-size:0.75rem; color:rgba(253,250,244,0.35);">
+            <span style="font-size:0.95rem;line-height:1">↩</span> 30-Day Returns
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Payment form -->
+      <div style="background:rgba(253,250,244,0.03); border:1px solid rgba(253,250,244,0.08); border-radius:6px; overflow:hidden;">
+
+        <!-- Tab selector -->
+        <div style="display:flex; border-bottom:1px solid rgba(253,250,244,0.08);">
+          <button onclick="switchTab('card', this)" id="tab-card"
+            style="flex:1; padding:1rem; background:rgba(192,57,43,0.15); border:none; color:var(--white); font-family:var(--font-body); font-size:0.8rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; border-bottom:2px solid var(--red); transition:all 0.2s;">
+            💳 Card
+          </button>
+          <button onclick="switchTab('paypal', this)" id="tab-paypal"
+            style="flex:1; padding:1rem; background:transparent; border:none; color:rgba(253,250,244,0.4); font-family:var(--font-body); font-size:0.8rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s;">
+            🅿️ PayPal
+          </button>
+          <button onclick="switchTab('wallet', this)" id="tab-wallet"
+            style="flex:1; padding:1rem; background:transparent; border:none; color:rgba(253,250,244,0.4); font-family:var(--font-body); font-size:0.8rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s;">
+            📱 Wallet
+          </button>
+        </div>
+
+        <!-- Card form -->
+        <div id="panel-card" style="padding:2rem;">
+          <div style="margin-bottom:1.2rem;">
+            <label class="field-label">Cardholder Name</label>
+            <input class="pay-input" type="text" placeholder="John Doe">
+          </div>
+          <div style="margin-bottom:1.2rem;">
+            <label class="field-label">Card Number</label>
+            <div style="position:relative;">
+              <input class="pay-input" type="text" placeholder="1234  5678  9012  3456" maxlength="19" id="cardNum" oninput="formatCard(this); detectCard(this)" style="padding-right:3.5rem; letter-spacing:0.08em;">
+              <div id="cardIcon" style="position:absolute; right:0.8rem; top:50%; transform:translateY(-50%); font-size:1.4rem; pointer-events:none; transition:all 0.2s;">💳</div>
+            </div>
+            <!-- Mini card logos row -->
+            <div style="display:flex; gap:0.4rem; margin-top:0.5rem; flex-wrap:wrap;" id="miniCards">
+              <span class="mini-card" id="mc-visa">VISA</span>
+              <span class="mini-card" id="mc-mc">MC</span>
+              <span class="mini-card" id="mc-amex">AMEX</span>
+              <span class="mini-card" id="mc-disc">DISC</span>
+              <span class="mini-card" id="mc-jcb">JCB</span>
+              <span class="mini-card" id="mc-union">UP</span>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.2rem;">
+            <div>
+              <label class="field-label">Expiry Date</label>
+              <input class="pay-input" type="text" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)">
+            </div>
+            <div>
+              <label class="field-label">CVV / CVC</label>
+              <input class="pay-input" type="text" placeholder="•••" maxlength="4">
+            </div>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <label class="field-label">Billing ZIP / Postal Code</label>
+            <input class="pay-input" type="text" placeholder="90210">
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem;">
+            <input type="checkbox" id="saveCard" style="accent-color:var(--red); width:14px; height:14px;">
+            <label for="saveCard" style="font-size:0.8rem; color:rgba(253,250,244,0.45); cursor:pointer;">Save card for future purchases</label>
+          </div>
+          <button onclick="handlePay()" style="width:100%; background:var(--red); color:var(--white); border:none; padding:1rem; font-family:var(--font-body); font-size:0.9rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; border-radius:3px; cursor:pointer; transition:background 0.2s;" onmouseover="this.style.background='#E74C3C'" onmouseout="this.style.background='var(--red)'">
+            🔒 &nbsp;Pay $262.00 Securely
+          </button>
+          <p style="text-align:center; font-size:0.72rem; color:rgba(253,250,244,0.25); margin-top:0.8rem;">
+            Your card data is encrypted and never stored on our servers.
+          </p>
+        </div>
+
+        <!-- PayPal panel -->
+        <div id="panel-paypal" style="padding:2rem; display:none; text-align:center;">
+          <div style="width:80px; height:80px; background:rgba(0,156,222,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2.5rem; margin:0 auto 1.5rem;">🅿️</div>
+          <h3 style="font-family:var(--font-display); font-size:1.3rem; margin-bottom:0.5rem;">Pay with PayPal</h3>
+          <p style="font-size:0.85rem; color:rgba(253,250,244,0.45); margin-bottom:2rem; line-height:1.6;">You'll be redirected to PayPal to complete your $262.00 purchase securely.</p>
+          <button onclick="handlePay()" style="width:100%; background:#F7BD1E; color:#003087; border:none; padding:1rem; font-family:var(--font-body); font-size:0.9rem; font-weight:700; letter-spacing:0.05em; border-radius:3px; cursor:pointer;">
+            Continue with PayPal →
+          </button>
+        </div>
+
+        <!-- Wallet panel -->
+        <div id="panel-wallet" style="padding:2rem; display:none;">
+          <p style="font-size:0.82rem; color:rgba(253,250,244,0.4); text-align:center; margin-bottom:1.5rem;">Choose your digital wallet</p>
+          <div style="display:flex; flex-direction:column; gap:0.8rem;">
+            <button onclick="handlePay()" style="width:100%; background:#1C1C1E; border:1px solid rgba(253,250,244,0.12); color:var(--white); padding:0.9rem; font-family:var(--font-body); font-size:0.9rem; font-weight:500; border-radius:3px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.6rem;">
+              🍎 &nbsp;Apple Pay
+            </button>
+            <button onclick="handlePay()" style="width:100%; background:#F5F5F5; border:1px solid rgba(253,250,244,0.08); color:#202124; padding:0.9rem; font-family:var(--font-body); font-size:0.9rem; font-weight:500; border-radius:3px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.6rem;">
+              G &nbsp;Google Pay
+            </button>
+            <button onclick="handlePay()" style="width:100%; background:#003087; border:none; color:white; padding:0.9rem; font-family:var(--font-body); font-size:0.9rem; font-weight:500; border-radius:3px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.6rem;">
+              🅿 &nbsp;PayPal
+            </button>
+          </div>
+          <p style="text-align:center; font-size:0.72rem; color:rgba(253,250,244,0.22); margin-top:1.2rem;">All wallets use device-level authentication</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pay-badge {
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid rgba(253,250,244,0.1);
+    transition: transform 0.15s, border-color 0.15s;
+    cursor: default;
+    display: flex;
+  }
+  .pay-badge:hover {
+    transform: translateY(-2px);
+    border-color: rgba(253,250,244,0.25);
+  }
+  .field-label {
+    display: block;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(253,250,244,0.4);
+    margin-bottom: 0.5rem;
+  }
+  .pay-input {
+    width: 100%;
+    background: rgba(253,250,244,0.05);
+    border: 1px solid rgba(253,250,244,0.1);
+    border-radius: 3px;
+    padding: 0.75rem 1rem;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .pay-input:focus {
+    border-color: var(--red);
+    background: rgba(253,250,244,0.07);
+  }
+  .pay-input::placeholder { color: rgba(253,250,244,0.2); }
+  .mini-card {
+    font-size: 0.6rem; font-weight: 700;
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+    background: rgba(253,250,244,0.08);
+    color: rgba(253,250,244,0.3);
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .mini-card.active {
+    background: var(--red);
+    color: white;
+  }
+
+  @media (max-width: 900px) {
+    #checkout { padding: 4rem 1.5rem !important; }
+    #checkout > div > div { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<script>
+function switchTab(tab, btn) {
+  ['card','paypal','wallet'].forEach(t => {
+    document.getElementById('panel-' + t).style.display = 'none';
+    const tb = document.getElementById('tab-' + t);
+    tb.style.background = 'transparent';
+    tb.style.color = 'rgba(253,250,244,0.4)';
+    tb.style.borderBottom = '2px solid transparent';
+  });
+  document.getElementById('panel-' + tab).style.display = 'block';
+  btn.style.background = 'rgba(192,57,43,0.15)';
+  btn.style.color = 'var(--white)';
+  btn.style.borderBottom = '2px solid var(--red)';
+}
+
+function formatCard(el) {
+  let v = el.value.replace(/\D/g,'').substring(0,16);
+  el.value = v.replace(/(.{4})/g,'$1  ').trim();
+}
+
+function detectCard(el) {
+  const v = el.value.replace(/\D/g,'');
+  const icons = {visa:'💳',mc:'💳',amex:'💳',disc:'💳',jcb:'💳',union:'💳'};
+  let detected = null;
+  const cardIcon = document.getElementById('cardIcon');
+  document.querySelectorAll('.mini-card').forEach(c => c.classList.remove('active'));
+  if (/^4/.test(v)) { detected='visa'; cardIcon.textContent='🔵'; }
+  else if (/^5[1-5]/.test(v)||/^2[2-7]/.test(v)) { detected='mc'; cardIcon.textContent='🔴'; }
+  else if (/^3[47]/.test(v)) { detected='amex'; cardIcon.textContent='🟦'; }
+  else if (/^6(?:011|5)/.test(v)) { detected='disc'; cardIcon.textContent='🟠'; }
+  else if (/^35/.test(v)) { detected='jcb'; cardIcon.textContent='🟩'; }
+  else if (/^62/.test(v)) { detected='union'; cardIcon.textContent='🟥'; }
+  else { cardIcon.textContent='💳'; }
+  if (detected) document.getElementById('mc-'+detected)?.classList.add('active');
+}
+
+function formatExpiry(el) {
+  let v = el.value.replace(/\D/g,'');
+  if (v.length >= 2) v = v.substring(0,2) + ' / ' + v.substring(2,4);
+  el.value = v;
+}
+
+function handlePay() {
+  const btn = event.target;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '✅ &nbsp;Payment Confirmed!';
+  btn.style.background = '#27AE60';
+  setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; }, 2500);
+}
+</script>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+
+    <div>
+      <div class="footer-brand">武道 <span>BUSHIDO</span></div>
+      <p class="footer-tagline">Rooted in tradition. Open to all. The way of the warrior is a lifelong practice.</p>
+    </div>
+
+    <div>
+      <div class="footer-heading">Shop</div>
+      <ul class="footer-links">
+        <li><a href="#">Uniforms & Gi</a></li>
+        <li><a href="#">Protective Gear</a></li>
+        <li><a href="#">Belts</a></li>
+        <li><a href="#">Training Equipment</a></li>
+        <li><a href="#">Accessories</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-heading">Training</div>
+      <ul class="footer-links">
+        <li><a href="#">Online Courses</a></li>
+        <li><a href="#">Dojo Schedule</a></li>
+        <li><a href="#">Private Lessons</a></li>
+        <li><a href="#">Kids Program</a></li>
+        <li><a href="#">Competition Team</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-heading">Info</div>
+      <ul class="footer-links">
+        <li><a href="#">About Bushido</a></li>
+        <li><a href="#">Our Instructors</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Shipping & Returns</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Payment logos in footer -->
+  <div style="padding-bottom:1.5rem; border-bottom:1px solid rgba(253,250,244,0.06); margin-bottom:1.5rem; display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+    <span style="font-size:0.7rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:rgba(253,250,244,0.25);">We Accept</span>
+    <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center;">
+      <svg viewBox="0 0 50 32" width="50" height="32" style="border-radius:3px; border:1px solid rgba(255,255,255,0.1);" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" rx="3" fill="#1A1F71"/><text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="700" font-style="italic">VISA</text></svg>
+      <svg viewBox="0 0 50 32" width="50" height="32" style="border-radius:3px; border:1px solid rgba(255,255,255,0.1);" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" fill="#252525" rx="3"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="30" cy="16" r="9" fill="#F79E1B"/><path d="M25 8.5a9 9 0 0 1 0 15A9 9 0 0 1 25 8.5z" fill="#FF5F00"/></svg>
+      <svg viewBox="0 0 50 32" width="50" height="32" style="border-radius:3px; border:1px solid rgba(255,255,255,0.1);" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" rx="3" fill="#007BC1"/><text x="50%" y="43%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="6" font-weight="700">AMERICAN</text><text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="6" font-weight="700">EXPRESS</text></svg>
+      <svg viewBox="0 0 50 32" width="50" height="32" style="border-radius:3px; border:1px solid rgba(255,255,255,0.1);" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" rx="3" fill="#231F20"/><circle cx="34" cy="16" r="11" fill="#F76F20"/><text x="9" y="56%" dominant-baseline="middle" fill="white" font-family="Arial" font-size="5.5" font-weight="700">DISC</text></svg>
+      <svg viewBox="0 0 50 32" width="50" height="32" style="border-radius:3px; border:1px solid rgba(255,255,255,0.1);" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" rx="3" fill="#F0F0F0"/><text x="50%" y="40%" dominant-baseline="middle" text-anchor="middle" fill="#003087" font-family="Arial" font-size="7" font-weight="800">Pay</text><text x="50%" y="68%" dominant-baseline="middle" text-anchor="middle" fill="#009CDE" font-family="Arial" font-size="7" font-weight="800">Pal</text></svg>
+      <svg viewBox="0 0 50 32" width="50" height="32" style="border-radius:3px; border:1px solid rgba(255,255,255,0.1);" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" rx="3" fill="#1C1C1E"/><text x="50%" y="38%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="8"></text><text x="50%" y="70%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="6.5" font-weight="600">Pay</text></svg>
+      <svg viewBox="0 0 50 32" width="50" height="32" style="border-radius:3px; border:1px solid rgba(255,255,255,0.1);" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" rx="3" fill="#F0F0F0"/><text x="8" y="60%" dominant-baseline="middle" fill="#4285F4" font-family="Arial" font-size="8" font-weight="700">G</text><text x="19" y="60%" dominant-baseline="middle" fill="#333" font-family="Arial" font-size="7">Pay</text></svg>
+      <svg viewBox="0 0 50 32" width="50" height="32" style="border-radius:3px; border:1px solid rgba(255,255,255,0.1);" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" rx="3" fill="#fff"/><rect x="5" y="5" width="13" height="22" rx="6" fill="#0E4C96"/><rect x="18" y="5" width="13" height="22" rx="6" fill="#E31837"/><rect x="31" y="5" width="13" height="22" rx="6" fill="#007B40"/><text x="11" y="58%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="6" font-weight="700">J</text><text x="24" y="58%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="6" font-weight="700">C</text><text x="37" y="58%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="6" font-weight="700">B</text></svg>
+      <svg viewBox="0 0 50 32" width="50" height="32" style="border-radius:3px; border:1px solid rgba(255,255,255,0.1);" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="32" rx="3" fill="#D4001A"/><rect x="15" y="0" width="35" height="32" rx="3" fill="#003087"/><text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="5.5" font-weight="700">UnionPay</text></svg>
+    </div>
+    <span style="font-size:0.7rem; color:rgba(253,250,244,0.2); display:flex; align-items:center; gap:0.3rem; margin-left:auto;">&#x1F512; SSL Secured</span>
+  </div>
+
+  <div class="footer-bottom">
+    <span>&copy; 2026 Bushido Karate. All rights reserved.</span>
+    <span>Privacy &middot; Terms &middot; Cookies</span>
+  </div>
+</footer>
+
+</body>
+</html>
